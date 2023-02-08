@@ -2,6 +2,14 @@
 
 ### Come along as I plan, design, implement, and support software for a massive increase in my online presence
 
+2/7/2023
+
+I know I have not updated this in a while. There is good news and bad news on this front:
+
+The bad news is I have been dealing with the sudden loss of my uncle. This caused me to shift my focus away from this project for a few weeks to grieve and center myself. I am finding this has been the proper way to deal with this loss.
+
+The good news is I started ready my [Blazor book](https://www.oreilly.com/library/view/learning-blazor/9781098113230/) and I am really liking it. I am looking to get into a more consistent pattern of reading this book every week. I also need to do some research on how to host a blog in Azure. This project is still throught about often and I haven't lost any excitement about it.
+
 1/9/2023
 
 Happy New Year. After taking some time away from software development outside of work I am ready to get back to it. I am questioning my previous choice of Gatsby (React) and Contentful for this portfolio site. I am now leaning heavily toward .NET Blazor and Azure to create this site and my blog. The reason is I think using the .NET stack and Azure would be more fun and a better use of my time. I don't see myself needing any more React experience in my side projects or my job. The more I think about going in this new technical direction the more my excitement and enthusiasm grows for this project. This would be a great opportunity to level up in the new features, tools, and frameworks of .NET. I have spent the last few years gaining technical breadth outside of .NET outside of work; The idea of gaining technical depth in .NET from this project is too intriguing.  
