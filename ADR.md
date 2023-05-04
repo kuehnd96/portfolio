@@ -30,4 +30,10 @@ I will use a mixture of VS Code and Visual Studio for this project. I will use V
 
 ## **Cloud Hosting**
 
-*Azure or AWS?*
+### Provider: Azure or AWS
+
+On one had I have been using Azure since 2015 and have a (soon to expire) certification for the platform. I really like Azure and have no big problems with this provider.
+
+On the other hand I have been using AWS since 2021 and use this provider at work. A designed, coded, tested, and deployed my first Lambda function (C#) and really enjoyed the experience due to the tools, testability, and serverless environment. I could always use more experience in AWS since it could help me in my job.
+
+I have been waffling on this decision for weeks now but I have decided to use Azure. I will continue to get more experience in AWS through my job so I will balance the scale with some Azure for this side project. Diagrams are coming soon that will show what Azure offerings will be used; I have been thinking about this and doing a little research.
