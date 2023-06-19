@@ -2,6 +2,16 @@
 
 ### Come along as I plan, design, implement, and support software for a massive increase in my online presence
 
+6/18/2023
+
+Well, that was a big gap in updates on this project. Here is what I have been up to:
+
+I have been updating the ADR file. The ADR file holds the place where I compose my architecture decisions regarding this project. The updates to this file are the tip of the iceberg as I have been thinking a lot about the technical trade-offs of this project. I am near completion of the ADR file. The last two decisions are CSS framework and how much data is served by persisted storage and an API. I am leaning heavily toward bootstrap for the CSS since I like using that with my [Angular training](https://github.com/kuehnd96/rocket_hackweek_Q1_2022) last year more than my experience with Tailwind in a green-field C# project with Angular back in 2021 for a consulting client. The other decision brings me to another noteworthy thing that happened in the last few months.
+
+In late May I consumed Microsoft's Build Developer Conference virtually from my home office. I consumed a lot of content on AI and what Microsoft offers in this area. My mind started racing about how AI could be applied to my work at Rocket Mortgage and to this side project. I hatched an idea that would require data of my career experience to be served by an API. Perhaps this is the way to go right away with this portfolio site? This way I can set myself up later for more ways of using this data? I am leaning toward this as my decision regarding this static data/persisted storage data decision. Either way, I am chomping at the bit to get my hands dirty with Microsoft's newer AI offerings. This would be phase two of this project.
+
+The other thing I have been doing is making progress in my [Blazor book](https://www.oreilly.com/library/view/learning-blazor/9781098113230/). While admitting this progess has been tiny I am encouraged by a new desire to work on this project coupled with increased time to do it since it now summer time. Now that the busiest time of the year as a parent is over I will hold myself to making a lot more progress on this project in the next few months than I have since in the 5 or so months since I hatched this project. I invite anyone reading this to hold me to this, too.
+
 2/7/2023
 
 I know I have not updated this in a while. There is good news and bad news on this front:
