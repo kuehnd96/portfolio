@@ -28,6 +28,10 @@ I will use a mixture of VS Code and Visual Studio for this project. I will use V
 
 Azure DevOps or Github?
 
+### Source Control
+
+GitHub (I ❤ Git)
+
 ## CSS
 
 I have a little experience with both Tailwind and Bootstrap. I used Tailwind on a new .NET C# project for a consulting client in 2021. I used Bootstrap for styling the [Angular app](https://github.com/kuehnd96/rocket_hackweek_Q1_2022) I created for the Udemy course I used to level up in Angular in 2022. I liked the experience with Bootstrap more due to the ease of finding the styles I needed and how easy it was to compose markup with the style you want to apply. Bootstrap will be used for this project.
