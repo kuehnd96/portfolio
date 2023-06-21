@@ -1,6 +1,6 @@
 # Architecture Decision Report
 
-### This file will contain details of the architecture decisions made for this portfolio project. Text in *italics* indicate decisions that I am noodling on.
+### This file contains details of the architecture decisions made for this portfolio project. Text in *italics* indicate decisions that I am noodling on.
 
 ## Web Stack
 
@@ -24,13 +24,15 @@ I have been using VS Code more and more for .NET work in the past few years to s
 
 I will use a mixture of VS Code and Visual Studio for this project. I will use Visual Studio when using my desktop PC and VS Code when I am using my (low-powered) Surface PC or my Mac.
 
+### CI/CD
+
+Azure DevOps or Github?
+
 ## CSS
 
 I have a little experience with both Tailwind and Bootstrap. I used Tailwind on a new .NET C# project for a consulting client in 2021. I used Bootstrap for styling the [Angular app](https://github.com/kuehnd96/rocket_hackweek_Q1_2022) I created for the Udemy course I used to level up in Angular in 2022. I liked the experience with Bootstrap more due to the ease of finding the styles I needed and how easy it was to compose markup with the style you want to apply. Bootstrap will be used for this project.
 
-## **Cloud Hosting**
-
-### Provider: Azure or AWS
+## Cloud Provider
 
 On one had I have been using Azure since 2015 and have a (soon to expire) certification for the platform. I really like Azure and have no big problems with this provider.
 
