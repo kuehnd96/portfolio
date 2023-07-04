@@ -8,9 +8,11 @@ In the several months following the conception of this project I had my mind set
 
 ### Blazor hosting model
 
-After reading a great [resource](https://learn.microsoft.com/en-us/aspnet/core/blazor/hosting-models?view=aspnetcore-7.0&source=docs) on the 3 different hosting models for Blazor I have decided to create this project using the Blazor WebAssembly hosting model. This will sacrifice some performance on initial load and limit my .NET compatibility some. This seems like the way to go since this project will be a relatively thin web site with a lot of static content and I would like it to work when the browser is offline.
+~~After reading a great [resource](https://learn.microsoft.com/en-us/aspnet/core/blazor/hosting-models?view=aspnetcore-7.0&source=docs) on the 3 different hosting models for Blazor I have decided to create this project using the Blazor WebAssembly hosting model. This will sacrifice some performance on initial load and limit my .NET compatibility some. This seems like the way to go since this project will be a relatively thin web site with a lot of static content and I would like it to work when the browser is offline.~~
 
-I should give Blazor Hybrid an honorable mention here. This is due to the fact that I would like to enable the use of this portfolio site on native devices (Windows, Mac, iPhone, iPad, and Android) using Microsoft's new MAUI technology. Razor components can be hosted this way without change regardless of what hosting model is chosen.
+After deciding to store the data for this portfolio in persisted storage to enable generative AI use in the future I had to revisit this hosting model decision. I read [this great resource](https://learn.microsoft.com/en-us/aspnet/core/blazor/hosting-models?view=aspnetcore-7.0&source=docs) again and have decided to go with a server hosting model. The reasons for this is the portfolio site will now need to access persisted storage from another resource over a network. Hitting this resource from a web server instead of the user's browser makes a lot more sense. Plus, the low amount of interactivity with this site will ensure that the traffic on the SignalR connection stays low. 
+
+I should give Blazor Hybrid an honorable mention here. This is due to the fact that I would like to enable the use of this portfolio site on native devices (Windows, Mac, iPhone, iPad, and Android) using Microsoft's MAUI technology. Razor components can be hosted this way without change regardless of what hosting model is chosen.
 
 ## Tools
 
