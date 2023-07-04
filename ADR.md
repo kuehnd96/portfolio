@@ -26,7 +26,7 @@ I will use a mixture of VS Code and Visual Studio for this project. I will use V
 
 ### CI/CD
 
-Azure DevOps or Github?
+I am going to go with Azure DevOps for deployment pipelines with this project since I have more experience with it. I am normally up for using side projects as an opportunity to learn new tools but I think that dance card is already full enough. I still want to learn GitHub issues and projects at some point but I not this time.
 
 ### Source Control
 
