@@ -2,6 +2,10 @@
 
 ### Come along as I plan, design, implement, and support software for a massive increase in my online presence
 
+8/1/2023
+
+Just when I am establishing some consistency and momentum on this project something comes along and disrupts it ... temporarily. My employer (Rocket Mortage) announced voluntary severance packages to get their head count down due to the slow mortgage industry and I decided to take it. I have already started looking for a new job and, at first, thought this initative would take up too much time to keep going on this side project. I soon realized that once I am done at Rocket Mortgage and through a couple of week-long family vacations this month I should have MORE time to work on this project than I have had. Looking for a job is like a job in itself but I shouldn't do that for 40 hours a week. Plus, working on this portfolio site would be a great thing to talk about with potential employers. I am now excited about having more time to work on this project in a few weeks on top of the excitement I have for finding my next job as a software developer.
+
 6/18/2023
 
 Well, that was a big gap in updates on this project. Here is what I have been up to:
