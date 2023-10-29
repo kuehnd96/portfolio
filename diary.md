@@ -2,6 +2,18 @@
 
 ### Come along as I plan, design, implement, and support software for a massive increase in my online presence
 
+10/29/2023
+
+The good news is I am 4 weeks into my new job and loving it. The bad news is I didn't have time to work on this project during my job search. Even though it has taken until now to post my first update in this diary I have been thinking about this project and doing some work on it for a couple weeks. 
+
+Fisrt off, the biggest task right now is to learn more about Blazor. I am using [this repo](https://github.com/kuehnd96/learning_blazor) as a sandbox for tinkering with Blazor as I read my book. I just finished creating a dev container for this repo so I can now run this code in a browser or any computer without needing to set up the dev environment.
+
+Second, I need to complete designing the content for the site. This includes deciding what I want to show, creating the site map, and designing the data for persisted storage. Thankfully, I am getting close on this and can be worked on it smaller chunks.
+
+Third, there are a few technical things I need to do to make sure I am set up for some longer-term technical plans for this project. More on this in the coming months.
+
+These next two months will be busy with some travel and holidays but I will find some time for this project.
+
 8/1/2023
 
 Just when I am establishing some consistency and momentum on this project something comes along and disrupts it ... temporarily. My employer (Rocket Mortage) announced voluntary severance packages to get their head count down due to the slow mortgage industry and I decided to take it. I have already started looking for a new job and, at first, thought this initative would take up too much time to keep going on this side project. I soon realized that once I am done at Rocket Mortgage and through a couple of week-long family vacations this month I should have MORE time to work on this project than I have had. Looking for a job is like a job in itself but I shouldn't do that for 40 hours a week. Plus, working on this portfolio site would be a great thing to talk about with potential employers. I am now excited about having more time to work on this project in a few weeks on top of the excitement I have for finding my next job as a software developer.
