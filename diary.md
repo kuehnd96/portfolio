@@ -2,6 +2,12 @@
 
 ### Come along as I plan, design, implement, and support software for a massive increase in my online presence
 
+11/6/2023
+
+Today is the last day of .NET Conf. A new LTS version of .NET is out and I am excited to try out some of the new things that were announced. A new hosting model for Blazor was introduced and I think it will be perfect for the type of Blazor app I plan to build for this project: Static server side rendering. It features the ability to run a Blazor app server side and pump HTML to the browser without the need for a persistant SignalR connection. I will be updating my ADR with the desion to use this hosing model.
+
+My excitement for this project is about as high as it has ever been. Next up I will finish planning my content, creating a site map, and composing and designing my data for persisted storage. After that I will learn some Blazor and then get coding. Also, I think I found a way to get some time every week to work on this project. I should be able to stick to this new schedule even with the holidays coming up.
+
 10/29/2023
 
 The good news is I am 4 weeks into my new job and loving it. The bad news is I didn't have time to work on this project during my job search. Even though it has taken until now to post my first update in this diary I have been thinking about this project and doing some work on it for a couple weeks. 
