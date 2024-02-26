@@ -2,6 +2,10 @@
 
 ### Come along as I plan, design, implement, and support software for a massive increase in my online presence
 
+2/25/2024
+
+I come to this diary entry today with a ton of enthusiam and drive for this project. I have been thinking a ton about this project and am going to change my plan from getting the site all set up with all of the content I have been planning to a more narrow goal of getting one vertical slice of the project done including the use of AI. The best term for this type of approach that I have read about is "tracer bullets". I will still have to do all of the fun setup of standing up a new solution, come up with cloud infrastructure, and setup of all of my builds and deployments but gets my hands dirty with all of the aspects of my architecture much sooner. My recent spike in enthusiasm for this project is rooted in this new approach and I am excited to get going on this. Right after pushing this diary update I am going to get busy planning what needs to be done and filling my backlog. I think this approach of standing up one feature of this project will allow me to fail faster, find solutions to problems with all parts of the solution quicker, and get to getting something out there quicker. I am off to start moving on this.
+
 11/6/2023
 
 Today is the last day of .NET Conf. A new LTS version of .NET is out and I am excited to try out some of the new things that were announced. A new hosting model for Blazor was introduced and I think it will be perfect for the type of Blazor app I plan to build for this project: Static server side rendering. It features the ability to run a Blazor app server side and pump HTML to the browser without the need for a persistant SignalR connection. I will be updating my ADR with the desion to use this hosing model.
