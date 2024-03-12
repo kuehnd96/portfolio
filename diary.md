@@ -2,6 +2,11 @@
 
 ### Come along as I plan, design, implement, and support software for a massive increase in my online presence
 
+3/11/2024
+
+I have established some great momentum on this project in recent weeks. I was able to clear out my old backlog, plan my new "tracer bullets" approach to the first phase of this project, and get a backlog created in work tracking system. My excitement for this new approach grew as I planned out what needs to be done and thought through all of the fun things I get to do in the coming months. Along with this comes a commitment to finding time to work on this project. This has been lacking since I conceived of this project a couple of years ago or so. I am a busy husband, father, and employee but I am determined to find time to move this project along. I am looking to this summer as an opportunity to make a lot of progress on this project since my parental duties go down with no school or scouting activities for my kids.
+Tonight, I am starting my new approach with designing my cloud architecture. I have a solid idea of the Azure resources that I will need host this project in the cloud but I need to firm up some details and figure out if I need a virtual network to hold it all together. 
+
 2/25/2024
 
 I come to this diary entry today with a ton of enthusiam and drive for this project. I have been thinking a ton about this project and am going to change my plan from getting the site all set up with all of the content I have been planning to a more narrow goal of getting one vertical slice of the project done including the use of AI. The best term for this type of approach that I have read about is "tracer bullets". I will still have to do all of the fun setup of standing up a new solution, come up with cloud infrastructure, and setup of all of my builds and deployments but gets my hands dirty with all of the aspects of my architecture much sooner. My recent spike in enthusiasm for this project is rooted in this new approach and I am excited to get going on this. Right after pushing this diary update I am going to get busy planning what needs to be done and filling my backlog. I think this approach of standing up one feature of this project will allow me to fail faster, find solutions to problems with all parts of the solution quicker, and get to getting something out there quicker. I am off to start moving on this.
