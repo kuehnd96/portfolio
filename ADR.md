@@ -47,3 +47,9 @@ On one had I have been using Azure since 2015 and have a (soon to expire) certif
 On the other hand I have been using AWS since 2021 and use this provider at work. A designed, coded, tested, and deployed my first Lambda function (C#) and really enjoyed the experience due to the tools, testability, and serverless environment. I could always use more experience in AWS since it could help me in my job.
 
 I have been waffling on this decision for weeks now but I have decided to use Azure. I will continue to get more experience in AWS through my job so I will balance the scale with some Azure for this side project. Diagrams are coming soon that will show what Azure offerings will be used; I have been thinking about this and doing a little research.
+
+### Web API Hosting
+
+After some research I am planning to host the API in an Azure Container App. This lines right up with the cloud native serverless approach to this project and it will keep costs low due to the auto-scaling offered with this resource type. I am not expecting a lot of traffic on this site but I still considering this initiative as a lesson in scaling things properly and keeping costs down when it comes to using the cloud. Plus, using Azure Container App comes with the added bonus of upping my docker game with the creation of a production and dev container docker files.
+
+At this point I don't see a risk or downside of going with Azure Container services. This doesn't mean that none exists, though. When I get to deploying my API to the cloud I will update this part of the ADR with any downsides that I find.
