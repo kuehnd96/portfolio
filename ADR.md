@@ -53,3 +53,11 @@ I have been waffling on this decision for weeks now but I have decided to use Az
 After some research I am planning to host the API in an Azure Container App. This lines right up with the cloud native serverless approach to this project and it will keep costs low due to the auto-scaling offered with this resource type. I am not expecting a lot of traffic on this site but I still considering this initiative as a lesson in scaling things properly and keeping costs down when it comes to using the cloud. Plus, using Azure Container App comes with the added bonus of upping my docker game with the creation of a production and dev container docker files.
 
 At this point I don't see a risk or downside of going with Azure Container services. This doesn't mean that none exists, though. When I get to deploying my API to the cloud I will update this part of the ADR with any downsides that I find.
+
+## Architecture
+
+After some research I have decided to go with [clean architecture](https://github.com/ardalis/CleanArchitecture) for this project. (Onion architecture is another name for clean architecture.) At the center of my solution is a core project for interfaces, business logic, and model objects. All other projects will depend on this project. Other projects include infrastructure projects which will house different implementations of interfaces and "head" projects which include the API project and web UI project.
+
+I have decided to not use the vertical feature slice arrangement of projects since it leads to large single projects and I would rather keep my projects smaller and separated. (I am not a fan of monoliths but plan to do some research on modular monoliths outside of this initiative.)
+
+Dependency injection will be heavily used and I will keep this ADR up to date on which design patterns I adopt for use.
