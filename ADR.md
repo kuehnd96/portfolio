@@ -6,6 +6,12 @@
 
 In the several months following the conception of this project I had my mind set on using Gatsby and Typescript as the web technology that would bring this portfolio web site to life. After doing some research on Gatsby and deciding that is was the technology that I needed for the mix of static and dynamic content for this project I started thinking about using .NET instead. The more I thought about this the more one simple thought kept ringing in my head. It was the thought that I like C# and dotnet more than any other tech stack that I have used and that using it on this project was the perfect opportunity to level up in C# and to add the arrow of Blazor to my Microsoft tech stack quiver. The decision to go with .NET instead of Gatsby and Node brought a huge wave of excitement and enthusiasm to this project for me. I still plan on learning Gatsby at some point but I am looking forward to slinging of C#.
 
+### .NET
+
+After a little research I have decided to use .NET 9 for this project. This is a standard-term support release which means I have 18 months of time before I have to update to the next verson of .NET (10). While this is a shorter window than with .NET 8 I am anxious to get more experience updating .NET apps between major versions. (At the time of this writing I am upgrading a few .NET 6 solutions to .NET 8 at work.)
+
+Another reason for using .NET 9 are some of the new feactures that come with the release. Since this project will involve Blazor I am particularly interested in the constructor injection for Razor components.
+
 ### Blazor hosting model
 
 ~~After reading a great [resource](https://learn.microsoft.com/en-us/aspnet/core/blazor/hosting-models?view=aspnetcore-7.0&source=docs) on the 3 different hosting models for Blazor I have decided to create this project using the Blazor WebAssembly hosting model. This will sacrifice some performance on initial load and limit my .NET compatibility some. This seems like the way to go since this project will be a relatively thin web site with a lot of static content and I would like it to work when the browser is offline.~~
