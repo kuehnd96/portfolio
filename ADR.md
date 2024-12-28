@@ -67,3 +67,5 @@ After some research I have decided to go with [clean architecture](https://githu
 I have decided to not use the vertical feature slice arrangement of projects since it leads to large single projects and I would rather keep my projects smaller and separated. (I am not a fan of monoliths but plan to do some research on modular monoliths outside of this initiative.)
 
 Dependency injection will be heavily used and I will keep this ADR up to date on which design patterns I adopt for use.
+
+I decided in late 2024 to build a client SDK for the backend API in C#. On top of being a great technical challenge (even though I have built these before) it will serve as a proof of concept for the usefullness of these client SDK libraries. They wrap everything in a package and shield the invoker of the API from having to mess around with API configurations, URL's, request headers, and everything else that comes with calling an API.

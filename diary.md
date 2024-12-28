@@ -2,6 +2,12 @@
 
 ### Come along as I plan, design, implement, and support software for a massive increase in my online presence
 
+12/28/2024
+
+Happy New Year to anyone who reads this. I am taking things easy during the holidays to recharge my batteries. I do plan to work on this side project during the week of New Years. I am nearly done with the design of the authentication for the backend API. I need to add this design to the diagram and then I can start coding it. Mixed in there will be learning more about Azure's Cosmos DB offering which will be the persisted data store for this project.
+
+I am exicted about this new year with this project. I am looking forward to getting my API out to the cloud and building my first Blazor project. I also look forward to using VS Code , building a build light for my Raspberry PI, and putting a dev container around this project. On to 2025!
+
 3/11/2024
 
 I have established some great momentum on this project in recent weeks. I was able to clear out my old backlog, plan my new "tracer bullets" approach to the first phase of this project, and get a backlog created in work tracking system. My excitement for this new approach grew as I planned out what needs to be done and thought through all of the fun things I get to do in the coming months. Along with this comes a commitment to finding time to work on this project. This has been lacking since I conceived of this project a couple of years ago or so. I am a busy husband, father, and employee but I am determined to find time to move this project along. I am looking to this summer as an opportunity to make a lot of progress on this project since my parental duties go down with no school or scouting activities for my kids.
