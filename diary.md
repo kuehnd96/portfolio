@@ -2,6 +2,15 @@
 
 ### Come along as I plan, design, implement, and support software for a massive increase in my online presence
 
+1/9/2025
+
+For a long time I had been thinking Cosmos DB for all of the persisted storage for this project. This decision was made because Cosmos is light-weight, cheap, had the geo-redundancy options that could reduce latency, and was the persisted storage choice for data that supports AI. There was a drive to learn something new at play here, too. While designing the security for the backend API recently I decided that the API will be its own authentication provider. I then consumed some reference material describing Cosmos DB as a poor choice for identity provider storage. This got me rethinking the persisted storage tech for the non-AI data. I quickly thought of SQL Server and the more I thought about this direction the more it sounded like a good fit for the data that will power this portfolio site. Amoung the reasons for this are the portfolio data will not change much, it can benefit from the quick joining that comes with a relational database, and there should be a performance gain from the consistent execution plans that reading this data would yeild.
+
+I am reuniting with an old friend with this decision. I have been using SQL server professionally for more than two decades and have enjoyed it. I am nerding out about setting up a SQL server on my network for my local dev environment.
+
+I will be adding a section to the ADR about this. It turns out persisted storage was missing in the ADR.
+
+
 12/28/2024
 
 Happy New Year to anyone who reads this. I am taking things easy during the holidays to recharge my batteries. I do plan to work on this side project during the week of New Years. I am nearly done with the design of the authentication for the backend API. I need to add this design to the diagram and then I can start coding it. Mixed in there will be learning more about Azure's Cosmos DB offering which will be the persisted data store for this project.
