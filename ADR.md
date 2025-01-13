@@ -74,8 +74,6 @@ I decided in late 2024 to build a client SDK for the backend API in C#. On top o
 
 The persisted storage for the data that will power this portfolio will be stored in SQL Server. This fits since the data is not large or complicated and won't change often.
 
-The persisted storage for the functionality that powers the AI that will enter the picture down the road will be powered by Azure Cosmos DB. The AI material I have consumed so far point to this as a clear choice for data used by AI for its speed and flexibility.
-
 The data access layer of this solution will use a CQRS pattern with the micro ORM Dapper. The use of commands, handlers, and queries will provide separation of code that reads and writes data along with the level of testability and performance required.
 
-I thought about using Entity Framework but decided against it because I want to have more control over the SQL that is run and the accompanying execution plans. I think it is worth noting that I do like Entity Framework and have had success using it in enterprise solutions. I will find a way to maintain the schema of the database as code. I am thinking a SQL Server project in the solution is the way to go but will do more research.
+Entity Framework will be used in this solution but only for the code-first migration functionality that comes with it. I am going to write SQL for reading and writing data to have more control over what is run and the accompanying execution plans.
