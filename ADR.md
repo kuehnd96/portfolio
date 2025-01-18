@@ -67,3 +67,13 @@ After some research I have decided to go with [clean architecture](https://githu
 I have decided to not use the vertical feature slice arrangement of projects since it leads to large single projects and I would rather keep my projects smaller and separated. (I am not a fan of monoliths but plan to do some research on modular monoliths outside of this initiative.)
 
 Dependency injection will be heavily used and I will keep this ADR up to date on which design patterns I adopt for use.
+
+I decided in late 2024 to build a client SDK for the backend API in C#. On top of being a great technical challenge (even though I have built these before) it will serve as a proof of concept for the usefullness of these client SDK libraries. They wrap everything in a package and shield the invoker of the API from having to mess around with API configurations, URL's, request headers, and everything else that comes with calling an API.
+
+## Persisted Storage
+
+The persisted storage for the data that will power this portfolio will be stored in SQL Server. This fits since the data is not large or complicated and won't change often.
+
+The data access layer of this solution will use a CQRS pattern with the micro ORM Dapper. The use of commands, handlers, and queries will provide separation of code that reads and writes data along with the level of testability and performance required.
+
+Entity Framework will be used in this solution but only for the code-first migration functionality that comes with it. I am going to write SQL for reading and writing data to have more control over what is run and the accompanying execution plans.
