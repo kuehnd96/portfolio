@@ -4,4 +4,4 @@ My side project to create a profession portfolio on the web. My resume is no lon
 
 Code name: Ghost
 
-Phase: Early Design
+Phase: Implementation of app shells
