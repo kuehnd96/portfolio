@@ -1,4 +1,5 @@
 using DavidKuehn.Portfolio.Core.Constants;
+using DavidKuehn.Portfolio.WebApi.Models.Career;
 using DavidKuehn.Portfolio.WebApi.Models.IdentityProvider;
 using Microsoft.EntityFrameworkCore;
 
@@ -6,12 +7,19 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.AddServiceDefaults();
 
-var connectionString = Environment.GetEnvironmentVariable(Infrastructure.SecurityDatabaseConnectionStringName);
+var securityConnectionString = Environment.GetEnvironmentVariable(Infrastructure.SecurityDatabaseConnectionStringName);
 
 // Add services to the container.
 builder.Services.AddDbContext<SecurityDbContext>(options =>
 {
-    options.UseSqlServer(connectionString);
+    options.UseSqlServer(securityConnectionString);
+});
+
+var careerConnectionString = Environment.GetEnvironmentVariable(Infrastructure.CareerDatabaseConnectionStringName);
+
+builder.Services.AddDbContext<CareerDbContext>(options =>
+{
+    options.UseSqlServer(careerConnectionString);
 });
 
 builder.Services.AddControllers();
