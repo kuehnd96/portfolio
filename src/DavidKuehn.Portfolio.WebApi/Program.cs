@@ -1,8 +1,18 @@
+using DavidKuehn.Portfolio.Core.Constants;
+using DavidKuehn.Portfolio.WebApi.Models.IdentityProvider;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.AddServiceDefaults();
 
+var connectionString = Environment.GetEnvironmentVariable(Infrastructure.SecurityDatabaseConnectionStringName);
+
 // Add services to the container.
+builder.Services.AddDbContext<SecurityDbContext>(options =>
+{
+    options.UseSqlServer(connectionString);
+});
 
 builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
