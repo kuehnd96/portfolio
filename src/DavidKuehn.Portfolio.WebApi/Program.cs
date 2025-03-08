@@ -1,6 +1,7 @@
 using DavidKuehn.Portfolio.Core.Constants;
 using DavidKuehn.Portfolio.WebApi.Models.Career;
 using DavidKuehn.Portfolio.WebApi.Models.IdentityProvider;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -25,6 +26,10 @@ builder.Services.AddDbContext<CareerDbContext>(options =>
 builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
+
+builder.Services.AddIdentity<IdentityUser, IdentityRole>()
+    // Use the EF Core for Creating, Managing Users and Roles
+    .AddEntityFrameworkStores<SecurityDbContext>().AddDefaultTokenProviders();
 
 var app = builder.Build();
 
