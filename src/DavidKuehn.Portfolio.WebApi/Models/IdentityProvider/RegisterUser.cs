@@ -7,8 +7,10 @@ namespace DavidKuehn.Portfolio.WebApi.Models.IdentityProvider
     /// </summary>
     public class RegisterUser
     {
+        public string? UserName { get; set; }
+
         // TODO: Secure strings
-        
+
         /// <summary>
         /// Gets or sets the password.
         /// </summary>
