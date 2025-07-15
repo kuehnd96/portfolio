@@ -7,6 +7,7 @@
     using System.IdentityModel.Tokens.Jwt;
     using System.Security.Claims;
     using System.Text;
+    using DavidKuehn.Portfolio.Core.Extensions;
 
     namespace Core_RBS_Tokens.Services
     {
@@ -99,7 +100,7 @@
                 else
                 {
                     // Check if User Already does not Exists
-                    var identityUser = await _userManager.FindByEmailAsync(user.UserName);
+                    var identityUser = await _userManager.FindByNameAsync(user.UserName);
                     if (identityUser == null)
                     {
                         response.StatusCode = 404;
@@ -118,7 +119,7 @@
                         else
                         {
 
-                            var authStatus = await _signInManager.PasswordSignInAsync(new IdentityUser(user.UserName), user.Password.ToString(), false, lockoutOnFailure: true);
+                            var authStatus = await _signInManager.PasswordSignInAsync(new IdentityUser(user.UserName), user.Password.ConvertToUnsecureString(), false, lockoutOnFailure: true);
 
                             if (authStatus.Succeeded)
                             {
