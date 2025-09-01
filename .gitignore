@@ -396,6 +396,3 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
-
-# Local settings file
-/src/DavidKuehn.Portfolio.WebApi/appsettings.Development.json
