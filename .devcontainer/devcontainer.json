@@ -1,0 +1,36 @@
+{
+    "name": "Portfolio Dev Container",
+    "image": "mcr.microsoft.com/devcontainers/dotnet:9.0",
+    "features": {
+        "ghcr.io/devcontainers/features/docker-in-docker:2": {
+            "version": "latest"
+        },
+        "ghcr.io/devcontainers/features/github-cli:1": {
+            "version": "2"
+        },
+        "ghcr.io/azure/azure-dev/azd:latest": {},
+        "ghcr.io/devcontainers/features/dotnet:2": {
+            "version": "none",
+            "workloads": "aspire"
+        }
+    },
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "ms-dotnettools.csdevkit",
+                "github.copilot",
+                "github.copilot-chat",
+                "eamodio.gitlens"
+            ]
+        }
+    },
+    "mounts": [
+        {
+            "type": "volume",
+            "source": "x509stores",
+            "target": "/home/vscode/.dotnet/corefx/cryptography/x509stores"
+        }
+    ],
+    "onCreateCommand": "bash .devcontainer/setup-dotnet-dev-cert.sh",
+    "postCreateCommand": "find **/*.sln -exec dotnet restore {} \\;"
+}
