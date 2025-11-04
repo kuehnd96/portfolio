@@ -6,21 +6,14 @@
 
 In the several months following the conception of this project I had my mind set on using Gatsby and Typescript as the web technology that would bring this portfolio web site to life. After doing some research on Gatsby and deciding that is was the technology that I needed for the mix of static and dynamic content for this project I started thinking about using .NET instead. The more I thought about this the more one simple thought kept ringing in my head. It was the thought that I like C# and dotnet more than any other tech stack that I have used and that using it on this project was the perfect opportunity to level up in C# and to add the arrow of Blazor to my Microsoft tech stack quiver. The decision to go with .NET instead of Gatsby and Node brought a huge wave of excitement and enthusiasm to this project for me. I still plan on learning Gatsby at some point but I am looking forward to slinging of C#.
 
+I am leaning heavily toward using React for the front end of this project instead of Blazor. There is more demand for React out there right now and I will be using it in my current job. The bottom line is I could use some more experience with React and TypeScript. I still plan to learn Blazor and recreating this app in Blazor could be a great way to do that.
+
 ### .NET
 
 After a little research I have decided to use .NET 9 for this project. This is a standard-term support release which means I have 18 months of time before I have to update to the next verson of .NET (10). While this is a shorter window than with .NET 8 I am anxious to get more experience updating .NET apps between major versions. (At the time of this writing I am upgrading a few .NET 6 solutions to .NET 8 at work.)
 
-Another reason for using .NET 9 are some of the new feactures that come with the release. Since this project will involve Blazor I am particularly interested in the constructor injection for Razor components.
+I will take time in 2026 to upgrade this project to .NET 10. This will add to my experience with major upgrades of .NET versions.
 
-### Blazor hosting model
-
-~~After reading a great [resource](https://learn.microsoft.com/en-us/aspnet/core/blazor/hosting-models?view=aspnetcore-7.0&source=docs) on the 3 different hosting models for Blazor I have decided to create this project using the Blazor WebAssembly hosting model. This will sacrifice some performance on initial load and limit my .NET compatibility some. This seems like the way to go since this project will be a relatively thin web site with a lot of static content and I would like it to work when the browser is offline.~~
-
-~~After deciding to store the data for this portfolio in persisted storage to enable generative AI use in the future I had to revisit this hosting model decision. I read [this great resource](https://learn.microsoft.com/en-us/aspnet/core/blazor/hosting-models?view=aspnetcore-7.0&source=docs) again and have decided to go with a server hosting model. The reasons for this is the portfolio site will now need to access persisted storage from another resource over a network. Hitting this resource from a web server instead of the user's browser makes a lot more sense. Plus, the low amount of interactivity with this site will ensure that the traffic on the SignalR connection stays low.~~
-
-A new Blazor hosting model was unveiled this week that I think will be better for this project than the server hosting model. Static server side rendering combmines running a Blazor app on the server while sending changes to the client in the form of HTML chunks. This is the next evolution of the long-standing server-side hosting model that pumped changes to the client using a persistent SignalR connection. This hosting model will perform well due to the low level of interactivity in the Blazor app.
-
-I should give Blazor Hybrid an honorable mention here. This is due to the fact that I would like to enable the use of this portfolio site on native devices (Windows, Mac, iPhone, iPad, and Android) using Microsoft's MAUI technology. Razor components can be hosted this way without change regardless of what hosting model is chosen.
 
 ## Tools
 
@@ -60,6 +53,8 @@ After some research I am planning to host the API in an Azure Container App. Thi
 
 At this point I don't see a risk or downside of going with Azure Container services. This doesn't mean that none exists, though. When I get to deploying my API to the cloud I will update this part of the ADR with any downsides that I find.
 
+With the change to React from Blazor I am still looking at an Azure Container service resource in the cloud. I will update this document if this changes.
+
 ## Architecture
 
 After some research I have decided to go with [clean architecture](https://github.com/ardalis/CleanArchitecture) for this project. (Onion architecture is another name for clean architecture.) At the center of my solution is a core project for interfaces, business logic, and model objects. All other projects will depend on this project. Other projects include infrastructure projects which will house different implementations of interfaces and "head" projects which include the API project and web UI project.
@@ -76,4 +71,4 @@ The persisted storage for the data that will power this portfolio will be stored
 
 The data access layer of this solution will use a CQRS pattern with the micro ORM Dapper. The use of commands, handlers, and queries will provide separation of code that reads and writes data along with the level of testability and performance required.
 
-Entity Framework will be used in this solution but only for the code-first migration functionality that comes with it. I am going to write SQL for reading and writing data to have more control over what is run and the accompanying execution plans.
+Instead of using Entity Framework with migrations I have decided to use a SQL server project to represent the state of the database schema. I have used some sort of migrations so much in my career and I want to try something without migrations. After reading up on SQL server projects this sounds like the way to go due to the compatibility with CI/CD and its lack of migrations.
