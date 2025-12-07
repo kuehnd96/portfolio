@@ -6,7 +6,7 @@
 
 In the several months following the conception of this project I had my mind set on using Gatsby and Typescript as the web technology that would bring this portfolio web site to life. After doing some research which revealed Gatsby would provide a mix of static and dynamic content for this project. I then started thinking about using .NET for this project and couldn't escape one thought. It was the thought that I like C# and dotnet more than any other tech stack that I have used. Using it on this project was the perfect opportunity to level up in C# and to add the arrow of Blazor to my Microsoft tech stack quiver. The decision to go with .NET instead of Gatsby and Node brought a huge wave of excitement and enthusiasm to this project for me. I still plan on learning Gatsby at some point but I am looking forward to slinging more C#.
 
-I was leaning heavily toward using React for the front end of this project instead of Blazor. While there is more demand for React out there right now I think adding Blazor to my skill set would allow me to speak to my consulting clients about an option for component-based web applications. I am using React in my current consulting gig and adding Blazor will allow me to provide more options to my clients.
+I was leaning heavily toward using React for the front end of this project instead of Blazor. While there is more demand for React out there right now I think adding Blazor to my skill set would allow me to speak to my consulting clients about an option for component-based web applications with .NET. I am using React in my current consulting gig and adding Blazor will allow me to provide more options to my clients.
 
 ### .NET
 
@@ -61,7 +61,7 @@ I have decided to not use the vertical feature slice arrangement of projects sin
 
 Dependency injection will be heavily used and I will keep this ADR up to date on which design patterns I adopt for use.
 
-I decided in late 2024 to build a client SDK for the backend API in C#. On top of being a great technical challenge (even though I have built these before) it will serve as a proof of concept for the usefullness of these client SDK libraries. They wrap everything in a package and shield the invoker of the API from having to mess around with API configurations, URL's, request headers, and everything else that comes with calling an API.
+I decided in late 2024 to build a client SDK for the backend API in C#. On top of being a great technical challenge (even though I have built these before) it will serve as a proof of concept for the usefullness of these client SDK libraries. They wrap everything in a package and shield the invoker of the API from having to mess around with API configurations, URL's, request headers, and everything else that comes with calling an API. Options for creating this API client are NSwag or an AI code generator.
 
 ## Persisted Storage
 
