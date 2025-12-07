@@ -2,6 +2,15 @@
 
 ### Come along as I plan, design, implement, and support software for a massive increase in my online presence
 
+10/28/2025
+
+It has been a while since I have checked in here but I have had this project on my mind and have been making progress. The late winter, spring, early summer were quiet due to coaching lacrosse, family trips, and much more. The good news is I have the first level of security installed in the API (key authentication). I was originally thinking full on bearer token security but that can wait until later in the project since this won't contain sensitive data. The other major accomplishment is the successful implementation of a dev container spec for this project. This allows me to develop this project in a Linux container anywhere I would like (my Sufrace Pro computer, a browser, etc.). I am happy with the progress that has been made in the second half of this year.
+
+I have been pondering a few architctural changes for this project for months now and I think I know which direction I will go on them. This side project affords me the opportunity to try new tools and technologies. This is a part of the motivation for the changes I am pondering. The details of these architecture changes will be detailed in the ADR file in this project.
+
+I am excited about what is next and what I can learn with this side project. I continue to carve out time here and there to make progress.
+
+
 1/9/2025
 
 For a long time I had been thinking Cosmos DB for all of the persisted storage for this project. This decision was made because Cosmos is light-weight, cheap, had the geo-redundancy options that could reduce latency, and was the persisted storage choice for data that supports AI. There was a drive to learn something new at play here, too. While designing the security for the backend API recently I decided that the API will be its own authentication provider. I then consumed some reference material describing Cosmos DB as a poor choice for identity provider storage. This got me rethinking the persisted storage tech for the non-AI data. I quickly thought of SQL Server and the more I thought about this direction the more it sounded like a good fit for the data that will power this portfolio site. Amoung the reasons for this are the portfolio data will not change much, it can benefit from the quick joining that comes with a relational database, and there should be a performance gain from the consistent execution plans that reading this data would yeild.
