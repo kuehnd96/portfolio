@@ -1,0 +1,579 @@
+{
+  "settings": {
+    "components": {
+      "code": false,
+      "binaries": false
+    },
+    "targetId": "net10.0",
+    "targetDisplayName": ".NETCoreApp,Version=v10.0"
+  },
+  "analysisStartTime": "2026-01-25T03:16:48.6796051Z",
+  "analysisEndTime": "2026-01-25T03:16:50.2435471Z",
+  "privacyModeHelpUrl": "https://go.microsoft.com/fwlink/?linkid=2270980",
+  "stats": {
+    "summary": {
+      "projects": 3,
+      "issues": 4,
+      "incidents": 17,
+      "effort": 17
+    },
+    "charts": {
+      "severity": {
+        "Mandatory": 3,
+        "Optional": 1,
+        "Potential": 13,
+        "Information": 0
+      },
+      "category": {
+        "NuGet": 8,
+        "Project": 3,
+        "Api": 6
+      }
+    }
+  },
+  "projects": [
+    {
+      "path": "DavidKuehn.Portfolio.AppHost\\DavidKuehn.Portfolio.AppHost.csproj",
+      "startingProject": true,
+      "issues": 3,
+      "storyPoints": 3,
+      "properties": {
+        "appName": "DavidKuehn.Portfolio.AppHost",
+        "projectKind": "DotNetCoreApp",
+        "frameworks": [
+          "net9.0"
+        ],
+        "languages": [
+          "C#"
+        ],
+        "tools": [
+          "MSBuild"
+        ],
+        "isSdkStyle": true,
+        "numberOfFiles": 1,
+        "numberOfCodeFiles": 1,
+        "linesTotal": 16,
+        "linesOfCode": 16,
+        "totalApiScanned": 28,
+        "minLinesOfCodeToChange": 0,
+        "maxLinesOfCodeToChange": 0
+      },
+      "ruleInstances": [
+        {
+          "incidentId": "3813727a-1cb9-471a-886a-14fb66d35b19",
+          "ruleId": "NuGet.0002",
+          "projectPath": "DavidKuehn.Portfolio.AppHost\\DavidKuehn.Portfolio.AppHost.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Aspire.Hosting.AppHost, 9.5.1\n\nRecommendation:\n\nRemove Aspire.Hosting.AppHost, and replace with new package Aspire.Hosting.AppHost 13.1.0",
+              "protected": "Aspire.Hosting.AppHost, 9.5.1\n\nRecommendation:\n\nRemove Aspire.Hosting.AppHost, and replace with new package Aspire.Hosting.AppHost 13.1.0"
+            },
+            "kind": "File",
+            "path": "DavidKuehn.Portfolio.AppHost\\DavidKuehn.Portfolio.AppHost.csproj",
+            "snippet": "Aspire.Hosting.AppHost, 9.5.1\n\nRecommendation:\n\nRemove Aspire.Hosting.AppHost, and replace with new package Aspire.Hosting.AppHost 13.1.0",
+            "protectedSnippet": "Aspire.Hosting.AppHost, 9.5.1\n\nRecommendation:\n\nRemove Aspire.Hosting.AppHost, and replace with new package Aspire.Hosting.AppHost 13.1.0",
+            "label": "Aspire.Hosting.AppHost 9.5.1",
+            "properties": {
+              "PackageId": "Aspire.Hosting.AppHost",
+              "PackageVersion": "9.5.1",
+              "PackageNewVersion": "13.1.0",
+              "PackageReplacements": null
+            }
+          }
+        },
+        {
+          "incidentId": "f4e07b76-f227-48ac-8c28-077c913a1521",
+          "ruleId": "NuGet.0005",
+          "projectPath": "DavidKuehn.Portfolio.AppHost\\DavidKuehn.Portfolio.AppHost.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Aspire.Hosting.AppHost, 9.5.1\n\nRecommendation:\n\nThis version is out of support and is no longer maintained. Please upgrade to the latest version. See our support policy for details: https://aka.ms/dotnet/aspire/support\nRemove Aspire.Hosting.AppHost, and replace with new package Aspire.Hosting.AppHost, 13.1.0",
+              "protected": "Aspire.Hosting.AppHost, 9.5.1\n\nRecommendation:\n\nThis version is out of support and is no longer maintained. Please upgrade to the latest version. See our support policy for details: https://aka.ms/dotnet/aspire/support\nRemove Aspire.Hosting.AppHost, and replace with new package Aspire.Hosting.AppHost, 13.1.0"
+            },
+            "kind": "File",
+            "path": "DavidKuehn.Portfolio.AppHost\\DavidKuehn.Portfolio.AppHost.csproj",
+            "snippet": "Aspire.Hosting.AppHost, 9.5.1\n\nRecommendation:\n\nThis version is out of support and is no longer maintained. Please upgrade to the latest version. See our support policy for details: https://aka.ms/dotnet/aspire/support\nRemove Aspire.Hosting.AppHost, and replace with new package Aspire.Hosting.AppHost, 13.1.0",
+            "protectedSnippet": "Aspire.Hosting.AppHost, 9.5.1\n\nRecommendation:\n\nThis version is out of support and is no longer maintained. Please upgrade to the latest version. See our support policy for details: https://aka.ms/dotnet/aspire/support\nRemove Aspire.Hosting.AppHost, and replace with new package Aspire.Hosting.AppHost, 13.1.0",
+            "label": "Aspire.Hosting.AppHost 9.5.1",
+            "properties": {
+              "PackageId": "Aspire.Hosting.AppHost",
+              "PackageVersion": "9.5.1",
+              "PackageNewVersion": null,
+              "PackageReplacements": null
+            }
+          }
+        },
+        {
+          "incidentId": "05849aab-ff59-49dc-9767-711e05343bcc",
+          "ruleId": "Project.0002",
+          "projectPath": "DavidKuehn.Portfolio.AppHost\\DavidKuehn.Portfolio.AppHost.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Current target framework: net9.0\nRecommended target framework: net10.0",
+              "protected": "Current target framework: net9.0\nRecommended target framework: net10.0"
+            },
+            "kind": "File",
+            "path": "DavidKuehn.Portfolio.AppHost\\DavidKuehn.Portfolio.AppHost.csproj",
+            "snippet": "Current target framework: net9.0\nRecommended target framework: net10.0",
+            "protectedSnippet": "Current target framework: net9.0\nRecommended target framework: net10.0",
+            "properties": {
+              "CurrentTargetFramework": "net9.0",
+              "RecommendedTargetFramework": "net10.0"
+            }
+          }
+        }
+      ],
+      "features": []
+    },
+    {
+      "path": "DavidKuehn.Portfolio.ServiceDefaults\\DavidKuehn.Portfolio.ServiceDefaults.csproj",
+      "startingProject": true,
+      "issues": 2,
+      "storyPoints": 5,
+      "properties": {
+        "appName": "DavidKuehn.Portfolio.ServiceDefaults",
+        "projectKind": "ClassLibrary",
+        "frameworks": [
+          "net9.0"
+        ],
+        "languages": [
+          "C#"
+        ],
+        "tools": [
+          "MSBuild"
+        ],
+        "isSdkStyle": true,
+        "numberOfFiles": 1,
+        "numberOfCodeFiles": 1,
+        "linesTotal": 119,
+        "linesOfCode": 119,
+        "totalApiScanned": 102,
+        "minLinesOfCodeToChange": 0,
+        "maxLinesOfCodeToChange": 0
+      },
+      "ruleInstances": [
+        {
+          "incidentId": "9eb5f3d3-bb44-4635-9eb4-d28ec579eb75",
+          "ruleId": "NuGet.0002",
+          "projectPath": "DavidKuehn.Portfolio.ServiceDefaults\\DavidKuehn.Portfolio.ServiceDefaults.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Microsoft.Extensions.Http.Resilience, 8.10.0\n\nRecommendation:\n\nRemove Microsoft.Extensions.Http.Resilience, and replace with new package Microsoft.Extensions.Http.Resilience 10.2.0",
+              "protected": "Microsoft.Extensions.Http.Resilience, 8.10.0\n\nRecommendation:\n\nRemove Microsoft.Extensions.Http.Resilience, and replace with new package Microsoft.Extensions.Http.Resilience 10.2.0"
+            },
+            "kind": "File",
+            "path": "DavidKuehn.Portfolio.ServiceDefaults\\DavidKuehn.Portfolio.ServiceDefaults.csproj",
+            "snippet": "Microsoft.Extensions.Http.Resilience, 8.10.0\n\nRecommendation:\n\nRemove Microsoft.Extensions.Http.Resilience, and replace with new package Microsoft.Extensions.Http.Resilience 10.2.0",
+            "protectedSnippet": "Microsoft.Extensions.Http.Resilience, 8.10.0\n\nRecommendation:\n\nRemove Microsoft.Extensions.Http.Resilience, and replace with new package Microsoft.Extensions.Http.Resilience 10.2.0",
+            "label": "Microsoft.Extensions.Http.Resilience 8.10.0",
+            "properties": {
+              "PackageId": "Microsoft.Extensions.Http.Resilience",
+              "PackageVersion": "8.10.0",
+              "PackageNewVersion": "10.2.0",
+              "PackageReplacements": null
+            }
+          }
+        },
+        {
+          "incidentId": "5d0c9932-3935-42ef-983b-728188ba39ef",
+          "ruleId": "NuGet.0002",
+          "projectPath": "DavidKuehn.Portfolio.ServiceDefaults\\DavidKuehn.Portfolio.ServiceDefaults.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Microsoft.Extensions.ServiceDiscovery, 9.5.1\n\nRecommendation:\n\nRemove Microsoft.Extensions.ServiceDiscovery, and replace with new package Microsoft.Extensions.ServiceDiscovery 10.2.0",
+              "protected": "Microsoft.Extensions.ServiceDiscovery, 9.5.1\n\nRecommendation:\n\nRemove Microsoft.Extensions.ServiceDiscovery, and replace with new package Microsoft.Extensions.ServiceDiscovery 10.2.0"
+            },
+            "kind": "File",
+            "path": "DavidKuehn.Portfolio.ServiceDefaults\\DavidKuehn.Portfolio.ServiceDefaults.csproj",
+            "snippet": "Microsoft.Extensions.ServiceDiscovery, 9.5.1\n\nRecommendation:\n\nRemove Microsoft.Extensions.ServiceDiscovery, and replace with new package Microsoft.Extensions.ServiceDiscovery 10.2.0",
+            "protectedSnippet": "Microsoft.Extensions.ServiceDiscovery, 9.5.1\n\nRecommendation:\n\nRemove Microsoft.Extensions.ServiceDiscovery, and replace with new package Microsoft.Extensions.ServiceDiscovery 10.2.0",
+            "label": "Microsoft.Extensions.ServiceDiscovery 9.5.1",
+            "properties": {
+              "PackageId": "Microsoft.Extensions.ServiceDiscovery",
+              "PackageVersion": "9.5.1",
+              "PackageNewVersion": "10.2.0",
+              "PackageReplacements": null
+            }
+          }
+        },
+        {
+          "incidentId": "4ed68115-90c0-49ca-b38c-d49b829b1c33",
+          "ruleId": "NuGet.0002",
+          "projectPath": "DavidKuehn.Portfolio.ServiceDefaults\\DavidKuehn.Portfolio.ServiceDefaults.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "OpenTelemetry.Instrumentation.AspNetCore, 1.9.0\n\nRecommendation:\n\nRemove OpenTelemetry.Instrumentation.AspNetCore, and replace with new package OpenTelemetry.Instrumentation.AspNetCore 1.15.0",
+              "protected": "OpenTelemetry.Instrumentation.AspNetCore, 1.9.0\n\nRecommendation:\n\nRemove OpenTelemetry.Instrumentation.AspNetCore, and replace with new package OpenTelemetry.Instrumentation.AspNetCore 1.15.0"
+            },
+            "kind": "File",
+            "path": "DavidKuehn.Portfolio.ServiceDefaults\\DavidKuehn.Portfolio.ServiceDefaults.csproj",
+            "snippet": "OpenTelemetry.Instrumentation.AspNetCore, 1.9.0\n\nRecommendation:\n\nRemove OpenTelemetry.Instrumentation.AspNetCore, and replace with new package OpenTelemetry.Instrumentation.AspNetCore 1.15.0",
+            "protectedSnippet": "OpenTelemetry.Instrumentation.AspNetCore, 1.9.0\n\nRecommendation:\n\nRemove OpenTelemetry.Instrumentation.AspNetCore, and replace with new package OpenTelemetry.Instrumentation.AspNetCore 1.15.0",
+            "label": "OpenTelemetry.Instrumentation.AspNetCore 1.9.0",
+            "properties": {
+              "PackageId": "OpenTelemetry.Instrumentation.AspNetCore",
+              "PackageVersion": "1.9.0",
+              "PackageNewVersion": "1.15.0",
+              "PackageReplacements": null
+            }
+          }
+        },
+        {
+          "incidentId": "70c538ef-0556-4adc-b8cd-42436e461eea",
+          "ruleId": "NuGet.0002",
+          "projectPath": "DavidKuehn.Portfolio.ServiceDefaults\\DavidKuehn.Portfolio.ServiceDefaults.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "OpenTelemetry.Instrumentation.Http, 1.9.0\n\nRecommendation:\n\nRemove OpenTelemetry.Instrumentation.Http, and replace with new package OpenTelemetry.Instrumentation.Http 1.15.0",
+              "protected": "OpenTelemetry.Instrumentation.Http, 1.9.0\n\nRecommendation:\n\nRemove OpenTelemetry.Instrumentation.Http, and replace with new package OpenTelemetry.Instrumentation.Http 1.15.0"
+            },
+            "kind": "File",
+            "path": "DavidKuehn.Portfolio.ServiceDefaults\\DavidKuehn.Portfolio.ServiceDefaults.csproj",
+            "snippet": "OpenTelemetry.Instrumentation.Http, 1.9.0\n\nRecommendation:\n\nRemove OpenTelemetry.Instrumentation.Http, and replace with new package OpenTelemetry.Instrumentation.Http 1.15.0",
+            "protectedSnippet": "OpenTelemetry.Instrumentation.Http, 1.9.0\n\nRecommendation:\n\nRemove OpenTelemetry.Instrumentation.Http, and replace with new package OpenTelemetry.Instrumentation.Http 1.15.0",
+            "label": "OpenTelemetry.Instrumentation.Http 1.9.0",
+            "properties": {
+              "PackageId": "OpenTelemetry.Instrumentation.Http",
+              "PackageVersion": "1.9.0",
+              "PackageNewVersion": "1.15.0",
+              "PackageReplacements": null
+            }
+          }
+        },
+        {
+          "incidentId": "64328d29-09ba-4077-83d2-003c4ee0599f",
+          "ruleId": "Project.0002",
+          "projectPath": "DavidKuehn.Portfolio.ServiceDefaults\\DavidKuehn.Portfolio.ServiceDefaults.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Current target framework: net9.0\nRecommended target framework: net10.0",
+              "protected": "Current target framework: net9.0\nRecommended target framework: net10.0"
+            },
+            "kind": "File",
+            "path": "DavidKuehn.Portfolio.ServiceDefaults\\DavidKuehn.Portfolio.ServiceDefaults.csproj",
+            "snippet": "Current target framework: net9.0\nRecommended target framework: net10.0",
+            "protectedSnippet": "Current target framework: net9.0\nRecommended target framework: net10.0",
+            "properties": {
+              "CurrentTargetFramework": "net9.0",
+              "RecommendedTargetFramework": "net10.0"
+            }
+          }
+        }
+      ],
+      "features": []
+    },
+    {
+      "path": "DavidKuehn.Portfolio.WebApi\\DavidKuehn.Portfolio.WebApi.csproj",
+      "startingProject": true,
+      "issues": 3,
+      "storyPoints": 9,
+      "properties": {
+        "appName": "DavidKuehn.Portfolio.WebApi",
+        "projectKind": "AspNetCore",
+        "frameworks": [
+          "net9.0"
+        ],
+        "languages": [
+          "C#"
+        ],
+        "tools": [
+          "MSBuild"
+        ],
+        "isSdkStyle": true,
+        "numberOfFiles": 10,
+        "numberOfCodeFiles": 8,
+        "linesTotal": 220,
+        "linesOfCode": 203,
+        "totalApiScanned": 219,
+        "minLinesOfCodeToChange": 6,
+        "maxLinesOfCodeToChange": 6
+      },
+      "ruleInstances": [
+        {
+          "incidentId": "219cd273-b5ee-44cf-bd4b-f27ef72b553a",
+          "ruleId": "NuGet.0002",
+          "projectPath": "DavidKuehn.Portfolio.WebApi\\DavidKuehn.Portfolio.WebApi.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Microsoft.AspNetCore.Authentication.JwtBearer, 9.0.8\n\nRecommendation:\n\nRemove Microsoft.AspNetCore.Authentication.JwtBearer, and replace with new package Microsoft.AspNetCore.Authentication.JwtBearer 10.0.2",
+              "protected": "Microsoft.AspNetCore.Authentication.JwtBearer, 9.0.8\n\nRecommendation:\n\nRemove Microsoft.AspNetCore.Authentication.JwtBearer, and replace with new package Microsoft.AspNetCore.Authentication.JwtBearer 10.0.2"
+            },
+            "kind": "File",
+            "path": "DavidKuehn.Portfolio.WebApi\\DavidKuehn.Portfolio.WebApi.csproj",
+            "snippet": "Microsoft.AspNetCore.Authentication.JwtBearer, 9.0.8\n\nRecommendation:\n\nRemove Microsoft.AspNetCore.Authentication.JwtBearer, and replace with new package Microsoft.AspNetCore.Authentication.JwtBearer 10.0.2",
+            "protectedSnippet": "Microsoft.AspNetCore.Authentication.JwtBearer, 9.0.8\n\nRecommendation:\n\nRemove Microsoft.AspNetCore.Authentication.JwtBearer, and replace with new package Microsoft.AspNetCore.Authentication.JwtBearer 10.0.2",
+            "label": "Microsoft.AspNetCore.Authentication.JwtBearer 9.0.8",
+            "properties": {
+              "PackageId": "Microsoft.AspNetCore.Authentication.JwtBearer",
+              "PackageVersion": "9.0.8",
+              "PackageNewVersion": "10.0.2",
+              "PackageReplacements": null
+            }
+          }
+        },
+        {
+          "incidentId": "610923a9-d3f1-42ec-86c1-0a4664c23eea",
+          "ruleId": "NuGet.0002",
+          "projectPath": "DavidKuehn.Portfolio.WebApi\\DavidKuehn.Portfolio.WebApi.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Microsoft.AspNetCore.OpenApi, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.AspNetCore.OpenApi, and replace with new package Microsoft.AspNetCore.OpenApi 10.0.2",
+              "protected": "Microsoft.AspNetCore.OpenApi, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.AspNetCore.OpenApi, and replace with new package Microsoft.AspNetCore.OpenApi 10.0.2"
+            },
+            "kind": "File",
+            "path": "DavidKuehn.Portfolio.WebApi\\DavidKuehn.Portfolio.WebApi.csproj",
+            "snippet": "Microsoft.AspNetCore.OpenApi, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.AspNetCore.OpenApi, and replace with new package Microsoft.AspNetCore.OpenApi 10.0.2",
+            "protectedSnippet": "Microsoft.AspNetCore.OpenApi, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.AspNetCore.OpenApi, and replace with new package Microsoft.AspNetCore.OpenApi 10.0.2",
+            "label": "Microsoft.AspNetCore.OpenApi 9.0.9",
+            "properties": {
+              "PackageId": "Microsoft.AspNetCore.OpenApi",
+              "PackageVersion": "9.0.9",
+              "PackageNewVersion": "10.0.2",
+              "PackageReplacements": null
+            }
+          }
+        },
+        {
+          "incidentId": "26c18ec1-d4c2-4426-a9db-5f374865b88c",
+          "ruleId": "Project.0002",
+          "projectPath": "DavidKuehn.Portfolio.WebApi\\DavidKuehn.Portfolio.WebApi.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Current target framework: net9.0\nRecommended target framework: net10.0",
+              "protected": "Current target framework: net9.0\nRecommended target framework: net10.0"
+            },
+            "kind": "File",
+            "path": "DavidKuehn.Portfolio.WebApi\\DavidKuehn.Portfolio.WebApi.csproj",
+            "snippet": "Current target framework: net9.0\nRecommended target framework: net10.0",
+            "protectedSnippet": "Current target framework: net9.0\nRecommended target framework: net10.0",
+            "properties": {
+              "CurrentTargetFramework": "net9.0",
+              "RecommendedTargetFramework": "net10.0"
+            }
+          }
+        },
+        {
+          "incidentId": "98354c53-5fa3-4d41-bcb0-d34174615df2",
+          "ruleId": "Api.0002",
+          "description": "API is available in package Microsoft.AspNetCore.Authentication.JwtBearer, 8.0.6. Add package reference to Microsoft.AspNetCore.Authentication.JwtBearer, 8.0.6",
+          "projectPath": "DavidKuehn.Portfolio.WebApi\\DavidKuehn.Portfolio.WebApi.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "policy.AddAuthenticationSchemes(new[]\n        {\n            JwtBearerDefaults.AuthenticationScheme\n        });",
+              "protected": "T:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerDefaults"
+            },
+            "kind": "File",
+            "path": "DavidKuehn.Portfolio.WebApi\\Program.cs",
+            "snippet": "policy.AddAuthenticationSchemes(new[]\n        {\n            JwtBearerDefaults.AuthenticationScheme\n        });",
+            "protectedSnippet": "T:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerDefaults",
+            "label": "T:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerDefaults",
+            "properties": {
+              "PackageId": "Microsoft.AspNetCore.Authentication.JwtBearer",
+              "PackageNewVersion": "8.0.6"
+            },
+            "line": 25,
+            "column": 8
+          }
+        },
+        {
+          "incidentId": "62bad56b-6688-4c06-8c67-d9b8df61bb36",
+          "ruleId": "Api.0002",
+          "description": "API is available in package Microsoft.AspNetCore.Authentication.JwtBearer, 8.0.6. Add package reference to Microsoft.AspNetCore.Authentication.JwtBearer, 8.0.6",
+          "projectPath": "DavidKuehn.Portfolio.WebApi\\DavidKuehn.Portfolio.WebApi.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "policy.AddAuthenticationSchemes(new[]\n        {\n            JwtBearerDefaults.AuthenticationScheme\n        });",
+              "protected": "F:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerDefaults.AuthenticationScheme"
+            },
+            "kind": "File",
+            "path": "DavidKuehn.Portfolio.WebApi\\Program.cs",
+            "snippet": "policy.AddAuthenticationSchemes(new[]\n        {\n            JwtBearerDefaults.AuthenticationScheme\n        });",
+            "protectedSnippet": "F:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerDefaults.AuthenticationScheme",
+            "label": "F:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerDefaults.AuthenticationScheme",
+            "properties": {
+              "PackageId": "Microsoft.AspNetCore.Authentication.JwtBearer",
+              "PackageNewVersion": "8.0.6"
+            },
+            "line": 25,
+            "column": 8
+          }
+        },
+        {
+          "incidentId": "5638952c-96bd-4972-ab26-9017519d139c",
+          "ruleId": "Api.0002",
+          "description": "API is available in package Microsoft.AspNetCore.Authentication.JwtBearer, 8.0.6. Add package reference to Microsoft.AspNetCore.Authentication.JwtBearer, 8.0.6",
+          "projectPath": "DavidKuehn.Portfolio.WebApi\\DavidKuehn.Portfolio.WebApi.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;",
+              "protected": "T:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerDefaults"
+            },
+            "kind": "File",
+            "path": "DavidKuehn.Portfolio.WebApi\\Program.cs",
+            "snippet": "options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;",
+            "protectedSnippet": "T:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerDefaults",
+            "label": "T:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerDefaults",
+            "properties": {
+              "PackageId": "Microsoft.AspNetCore.Authentication.JwtBearer",
+              "PackageNewVersion": "8.0.6"
+            },
+            "line": 18,
+            "column": 4
+          }
+        },
+        {
+          "incidentId": "0a587e39-e79e-4061-86b1-2e003eea36be",
+          "ruleId": "Api.0002",
+          "description": "API is available in package Microsoft.AspNetCore.Authentication.JwtBearer, 8.0.6. Add package reference to Microsoft.AspNetCore.Authentication.JwtBearer, 8.0.6",
+          "projectPath": "DavidKuehn.Portfolio.WebApi\\DavidKuehn.Portfolio.WebApi.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;",
+              "protected": "F:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerDefaults.AuthenticationScheme"
+            },
+            "kind": "File",
+            "path": "DavidKuehn.Portfolio.WebApi\\Program.cs",
+            "snippet": "options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;",
+            "protectedSnippet": "F:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerDefaults.AuthenticationScheme",
+            "label": "F:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerDefaults.AuthenticationScheme",
+            "properties": {
+              "PackageId": "Microsoft.AspNetCore.Authentication.JwtBearer",
+              "PackageNewVersion": "8.0.6"
+            },
+            "line": 18,
+            "column": 4
+          }
+        },
+        {
+          "incidentId": "413befbc-3509-4789-b644-1abb6c14ac87",
+          "ruleId": "Api.0002",
+          "description": "API is available in package Microsoft.AspNetCore.Authentication.JwtBearer, 8.0.6. Add package reference to Microsoft.AspNetCore.Authentication.JwtBearer, 8.0.6",
+          "projectPath": "DavidKuehn.Portfolio.WebApi\\DavidKuehn.Portfolio.WebApi.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "builder.Services.AddAuthentication(options =\u003E\n{\n    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;\n}).AddJwtBearer();",
+              "protected": "T:Microsoft.Extensions.DependencyInjection.JwtBearerExtensions"
+            },
+            "kind": "File",
+            "path": "DavidKuehn.Portfolio.WebApi\\Program.cs",
+            "snippet": "builder.Services.AddAuthentication(options =\u003E\n{\n    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;\n}).AddJwtBearer();",
+            "protectedSnippet": "T:Microsoft.Extensions.DependencyInjection.JwtBearerExtensions",
+            "label": "T:Microsoft.Extensions.DependencyInjection.JwtBearerExtensions",
+            "properties": {
+              "PackageId": "Microsoft.AspNetCore.Authentication.JwtBearer",
+              "PackageNewVersion": "8.0.6"
+            },
+            "line": 16,
+            "column": 0
+          }
+        },
+        {
+          "incidentId": "1d42d550-20b1-4857-b45f-e1f79fb5edb0",
+          "ruleId": "Api.0002",
+          "description": "API is available in package Microsoft.AspNetCore.Authentication.JwtBearer, 8.0.6. Add package reference to Microsoft.AspNetCore.Authentication.JwtBearer, 8.0.6",
+          "projectPath": "DavidKuehn.Portfolio.WebApi\\DavidKuehn.Portfolio.WebApi.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "builder.Services.AddAuthentication(options =\u003E\n{\n    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;\n}).AddJwtBearer();",
+              "protected": "M:Microsoft.Extensions.DependencyInjection.JwtBearerExtensions.AddJwtBearer(Microsoft.AspNetCore.Authentication.AuthenticationBuilder)"
+            },
+            "kind": "File",
+            "path": "DavidKuehn.Portfolio.WebApi\\Program.cs",
+            "snippet": "builder.Services.AddAuthentication(options =\u003E\n{\n    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;\n}).AddJwtBearer();",
+            "protectedSnippet": "M:Microsoft.Extensions.DependencyInjection.JwtBearerExtensions.AddJwtBearer(Microsoft.AspNetCore.Authentication.AuthenticationBuilder)",
+            "label": "M:Microsoft.Extensions.DependencyInjection.JwtBearerExtensions.AddJwtBearer(Microsoft.AspNetCore.Authentication.AuthenticationBuilder)",
+            "properties": {
+              "PackageId": "Microsoft.AspNetCore.Authentication.JwtBearer",
+              "PackageNewVersion": "8.0.6"
+            },
+            "line": 16,
+            "column": 0
+          }
+        }
+      ],
+      "features": []
+    }
+  ],
+  "rules": {
+    "NuGet.0002": {
+      "id": "NuGet.0002",
+      "isFeature": false,
+      "description": "NuGet package upgrade is recommended for selected target framework.\n\nStandard .NET packages are recommended to have versions matching version of .NET that project targets.\n\nSome other packages also are known to work better for selected target frameworks.",
+      "label": "NuGet package upgrade is recommended",
+      "severity": "Potential",
+      "effort": 1,
+      "links": [
+        {
+          "url": "https://go.microsoft.com/fwlink/?linkid=2262530",
+          "isCustom": false
+        }
+      ]
+    },
+    "Project.0002": {
+      "id": "Project.0002",
+      "isFeature": false,
+      "description": "Project\u0027s target framework(s) needs to be changed to the new target framework that you selected for this upgrade.\n\nDuring upgrade target framework will be adjusted to corresponding platform when applicable. In some cases project would result in multiple target frameworks after the upgrade if it was using features that now have their own platforms in modern .NET frameworks (windows, iOS, Android etc).",
+      "label": "Project\u0027s target framework(s) needs to be changed",
+      "severity": "Mandatory",
+      "effort": 1,
+      "links": [
+        {
+          "title": "Overview of porting from .NET Framework to .NET",
+          "url": "https://go.microsoft.com/fwlink/?linkid=2265227",
+          "isCustom": false
+        },
+        {
+          "title": ".NET project SDKs",
+          "url": "https://go.microsoft.com/fwlink/?linkid=2265226",
+          "isCustom": false
+        }
+      ]
+    },
+    "Api.0002": {
+      "id": "Api.0002",
+      "isFeature": false,
+      "description": "API is source incompatible for selected .NET version: requires code changes to compile successfully when targeting a new version, such as removing obsolete APIs or changing method signatures.",
+      "label": "Source incompatible for selected .NET version",
+      "severity": "Potential",
+      "effort": 1,
+      "links": [
+        {
+          "title": "Breaking changes in .NET",
+          "url": "https://go.microsoft.com/fwlink/?linkid=2262679",
+          "isCustom": false
+        }
+      ]
+    },
+    "NuGet.0005": {
+      "id": "NuGet.0005",
+      "isFeature": false,
+      "description": "NuGet package is deprecated.\n\nGo to its documentation and if there is a guidance for replacement of functionality provided by this package.",
+      "label": "NuGet package is deprecated",
+      "severity": "Optional",
+      "effort": 1,
+      "links": [
+        {
+          "url": "https://go.microsoft.com/fwlink/?linkid=2262531",
+          "isCustom": false
+        }
+      ]
+    }
+  }
+}
