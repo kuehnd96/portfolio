@@ -10,9 +10,11 @@ I was leaning heavily toward using React for the front end of this project inste
 
 ### .NET
 
-After a little research I have decided to use .NET 9 for this project. This is a standard-term support release which means I have 18 months of time before I have to update to the next verson of .NET (10). While this is a shorter window than with .NET 8 I am anxious to get more experience updating .NET apps between major versions. I have experience with doing these updates of major versions of .NET but I can always use more.
+This solution now targets .NET 10. The project uses the latest stable runtime and package set aligned with .NET 10 so development stays current with platform improvements and ecosystem support.
 
-I will take time in 2026 to upgrade this project to .NET 10. I plan to use GitHub Copilot for this upgrade so I can speak to how useful it is for this.
+### .NET history
+
+The project originally started on .NET 9, and it was upgraded to .NET 10 on 2026-02-17 using a focused framework/package upgrade process.
 
 
 ## Tools

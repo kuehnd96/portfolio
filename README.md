@@ -16,7 +16,7 @@ The solution consists of three projects:
 
 ## Technology Stack
 
-- **.NET 9** - Application framework
+- **.NET 10** - Application framework
 - **ASP.NET Core** - Web API
 - **Aspire** - Cloud-native application orchestration
 - **Blazor** (planned) - Web UI with static server-side rendering
@@ -31,7 +31,7 @@ The Web API implements API key authentication. The API key is passed via environ
 ## Prerequisites
 
 - Docker (required for running with Aspire)
-- .NET 9 SDK
+- .NET 10 SDK
 - (Optional) Dev container support for containerized development
 
 ## Running Locally
