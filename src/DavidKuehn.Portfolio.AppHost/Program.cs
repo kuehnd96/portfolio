@@ -14,7 +14,7 @@ webApi.WithEnvironment(ApiKeyEnvironmentName, apiKey);
 builder.AddProject<Projects.DavidKuehn_Portfolio_WebApi>("portfolio-webapi");
 #endif
 
-builder.AddProject<Projects.DavidKuehn_Portfolio_UI_Web>("davidkuehn-portfolio-ui-web")
+builder.AddProject<Projects.DavidKuehn_Portfolio_UI_Web>("portfolio-ui-web")
     .WithReference(webApi);
 
 builder.Build().Run();
