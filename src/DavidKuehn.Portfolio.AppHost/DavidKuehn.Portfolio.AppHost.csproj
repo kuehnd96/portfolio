@@ -16,10 +16,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DavidKuehn.Portfolio.UI\DavidKuehn.Portfolio.UI.Web\DavidKuehn.Portfolio.UI.Web.csproj" />
-    <ProjectReference Include="..\DavidKuehn.Portfolio.UI\DavidKuehn.Portfolio.UI\DavidKuehn.Portfolio.UI.csproj">
-      <SetTargetFramework>TargetFramework=net10.0</SetTargetFramework>
-    </ProjectReference>
     <ProjectReference Include="..\DavidKuehn.Portfolio.WebApi\DavidKuehn.Portfolio.WebApi.csproj" />
   </ItemGroup>
 
