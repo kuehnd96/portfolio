@@ -1,4 +1,3 @@
-using DavidKuehn.Portfolio.UI.Web.Client.Pages;
 using DavidKuehn.Portfolio.UI.Web.Components;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,6 +8,13 @@ builder.AddServiceDefaults();
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents()
     .AddInteractiveWebAssemblyComponents();
+
+// Add output caching services
+builder.Services.AddOutputCache(options =>
+{
+    options.AddBasePolicy(policy => policy.Expire(TimeSpan.FromMinutes(30))); // pages with data that doesn't change much
+    //options.AddPolicy("Api60s", policy => policy.Expire(TimeSpan.FromSeconds(60)));
+});
 
 var app = builder.Build();
 
@@ -29,6 +35,8 @@ app.UseStatusCodePagesWithReExecute("/not-found", createScopeForStatusCodePages:
 app.UseHttpsRedirection();
 
 app.UseAntiforgery();
+
+app.UseOutputCache();
 
 app.MapStaticAssets();
 app.MapRazorComponents<App>()
