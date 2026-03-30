@@ -2,6 +2,12 @@
 
 ### Come along as I plan, design, implement, and support software for a massive increase in my online presence
 
+3/29/2026
+
+Work on this project continues to chug along. I have had ebbs and flows regarding how much time I have been able to work on this but I am making progress. Tonight I will merge the UI project for this and recently I updated the solution from .NET 8 to .NET 10 using two different AI models. The next step is one I have been looking foward to for a long time; I will be creating the first feature of this project. Among other things I am looking forward to learning more about Aspire, designing my own command invoker for CQRS, getting open telemetry up a running, creating my first SQL server project, and using clean architecture to sort what goes into what projects.
+
+My duties as a youth lacrosse head coach will start soon but I will continue to show up for this project.
+
 10/28/2025
 
 It has been a while since I have checked in here but I have had this project on my mind and have been making progress. The late winter, spring, early summer were quiet due to coaching lacrosse, family trips, and much more. The good news is I have the first level of security installed in the API (key authentication). I was originally thinking full on bearer token security but that can wait until later in the project since this won't contain sensitive data. The other major accomplishment is the successful implementation of a dev container spec for this project. This allows me to develop this project in a Linux container anywhere I would like (my Sufrace Pro computer, a browser, etc.). I am happy with the progress that has been made in the second half of this year.
