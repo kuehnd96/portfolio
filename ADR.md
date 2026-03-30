@@ -8,6 +8,10 @@ In the several months following the conception of this project I had my mind set
 
 I was leaning heavily toward using React for the front end of this project instead of Blazor. While there is more demand for React out there right now I think adding Blazor to my skill set would allow me to speak to my consulting clients about an option for component-based web applications with .NET. I am using React in my current consulting gig and adding Blazor will allow me to provide more options to my clients.
 
+After some research into Blazor hosting models I have decided to go with a global server hosting model. The main reason for this decision is this project will not contain a lot of interactivity. This means the user doesn't gain anything by having the app downloaded and run in their browser. Any interactive features of this project are not guaranteed to be implemented at this point and relatively simple. I don't see a reason to adopt a per page/component hosting model at this point but it is an option down the road.
+
+The decision has been made to create a hybrid Blazor app. This enables releasing this portfolio as a native app for mobile devices, Windows, and MacOS in the future. This is something I plan to pursue but not right away.
+
 ### .NET
 
 This solution now targets .NET 10. The project uses the latest stable runtime and package set aligned with .NET 10 so development stays current with platform improvements and ecosystem support.
