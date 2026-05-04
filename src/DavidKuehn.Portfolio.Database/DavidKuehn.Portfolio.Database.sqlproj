@@ -58,11 +58,15 @@
     <Folder Include="Properties" />
     <Folder Include="WorkExperience" />
     <Folder Include="WorkExperience\Tables" />
+    <Folder Include="WorkExperience\StoredProcedures" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="WorkExperience\Tables\WorkExperienceJobSkills.sql" />
     <Build Include="WorkExperience\Tables\WorkExperienceJobs.sql" />
     <Build Include="WorkExperience\Tables\WorkExperienceSkills.sql" />
     <Build Include="WorkExperience\Tables\WorkExperienceTitles.sql" />
+    <Build Include="WorkExperience\StoredProcedures\GetJob.sql" />
+    <Build Include="WorkExperience\StoredProcedures\GetAllSkills.sql" />
+    <Build Include="WorkExperience\StoredProcedures\GetJobList.sql" />
   </ItemGroup>
 </Project>
