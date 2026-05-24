@@ -1,0 +1,6 @@
+﻿CREATE TABLE [dbo].[WorkExperienceSkills]
+(
+	[Id] UNIQUEIDENTIFIER NOT NULL PRIMARY KEY DEFAULT NEWID(), 
+    [Name] VARCHAR(50) NOT NULL, 
+    [Type] TINYINT NOT NULL
+)
