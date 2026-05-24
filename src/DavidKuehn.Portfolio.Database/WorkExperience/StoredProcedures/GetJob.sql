@@ -1,5 +1,5 @@
 ﻿CREATE PROCEDURE [dbo].[GetAllJobs]
-	@JobId INT
+	@JobId UNIQUEIDENTIFIER
 AS
  SELECT
 		j.[Id],
