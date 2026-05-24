@@ -1,4 +1,4 @@
-﻿CREATE TABLE [dbo].[WorkExperienceTitle]
+﻿CREATE TABLE [dbo].[WorkExperienceTitles]
 (
 	[Id] UNIQUEIDENTIFIER NOT NULL PRIMARY KEY DEFAULT NEWID(), 
     [JobId] UNIQUEIDENTIFIER NOT NULL,

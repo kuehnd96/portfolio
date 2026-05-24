@@ -14,8 +14,8 @@ BEGIN
     (
         SELECT TOP (1)
             t.[Title]
-        FROM [dbo].[WorkExperienceJobTitles] t
-        WHERE t.[WorkExperienceJobId] = j.[Id]
+        FROM [dbo].[WorkExperienceTitles] t
+        WHERE t.[JobId] = j.[Id]
         ORDER BY t.[StartYear] DESC
     ) lt
     ORDER BY j.[StartYear] DESC, j.[EndYear] DESC;
