@@ -9,14 +9,18 @@ namespace DavidKuehn.Portfolio.Infrastructure.WorkExperience.Data
 {
     public class WorkExperienceData : IWorkExperienceData
     {
-        //TODO: Get SQL connection string in place
-        
+        private readonly string _connectionString;
+
+        public WorkExperienceData(string connectionString)
+        {
+            _connectionString = connectionString;
+        }
+
         public async Task<Job?> GetJob(Guid jobId)
         {
             var jobResults = new List<JobResult>();
-            var connectionString = "YourConnectionStringHere";
 
-            using (var connection = new SqlConnection(connectionString))
+            using (var connection = new SqlConnection(_connectionString))
             {
                 // Open the connection
                 await connection.OpenAsync();
@@ -63,9 +67,8 @@ namespace DavidKuehn.Portfolio.Infrastructure.WorkExperience.Data
         public async Task<IEnumerable<ListJob>> GetJobList()
         {
             var jobs = new List<ListJob>();
-            var connectionString = "YourConnectionStringHere";
 
-            using (var connection = new SqlConnection(connectionString))
+            using (var connection = new SqlConnection(_connectionString))
             {
                 // Open the connection
                 await connection.OpenAsync();
@@ -101,9 +104,8 @@ namespace DavidKuehn.Portfolio.Infrastructure.WorkExperience.Data
         public async Task<IEnumerable<Skill>> GetSkills()
         {
             var skills = new List<Skill>();
-            var connectionString = "YourConnectionStringHere";
 
-            using (var connection = new SqlConnection(connectionString))
+            using (var connection = new SqlConnection(_connectionString))
             {
                 // Open the connection
                 await connection.OpenAsync();
