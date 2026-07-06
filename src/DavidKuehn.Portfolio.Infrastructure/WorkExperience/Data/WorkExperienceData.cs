@@ -1,6 +1,7 @@
 ﻿using DavidKuehn.Portfolio.Core.WorkExperience.Enums;
 using DavidKuehn.Portfolio.Core.WorkExperience.Interfaces;
 using DavidKuehn.Portfolio.Core.WorkExperience.Models;
+using DavidKuehn.Portfolio.Infrastructure.WorkExperience.Adapters;
 using DavidKuehn.Portfolio.Infrastructure.WorkExperience.Data.Models;
 using Microsoft.Data.SqlClient;
 
@@ -56,33 +57,7 @@ namespace DavidKuehn.Portfolio.Infrastructure.WorkExperience.Data
                 }
             }
 
-            return jobResults.GroupBy(result => result.Id)
-                .Select(group => new Job
-                {
-                    Id = group.Key,
-                    StartYear = group.First().StartYear,
-                    EndYear = group.First().EndYear,
-                    Company = group.First().Company,
-                    CurrentCompanyName = group.First().CurrentCompanyName,
-                    Type = (JobType)group.First().Type,
-                    Titles = group.Select(result => new Title
-                    {
-                        Id = result.TitleId,
-                        Name = result.Title,
-                        StartYear = result.TitleStartYear,
-                        EndYear = result.TitleEndYear,
-                        Details = result.Details,
-                        BulletPoints = result.BulletPoints
-                    }).ToList(),
-                    Skills = group
-                        .Where(result => result.SkillId.HasValue && !string.IsNullOrEmpty(result.SkillName))
-                        .Select(result => new Skill
-                        {
-                            Id = result.SkillId!.Value,
-                            Name = result.SkillName!,
-                            Type = result.SkillType.HasValue ? (SkillType)result.SkillType.Value : SkillType.None
-                        }).ToList()
-                }).FirstOrDefault();
+            return WorkExperienceAdapter.ToJob(jobResults);
         }
 
         public async Task<IEnumerable<ListJob>> GetJobList()

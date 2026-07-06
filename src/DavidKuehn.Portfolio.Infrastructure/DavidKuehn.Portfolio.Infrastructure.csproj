@@ -15,4 +15,10 @@
     <ProjectReference Include="..\DavidKuehn.Portfolio.Core\DavidKuehn.Portfolio.Core.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleTo">
+      <_Parameter1>DavidKuehn.Portfolio.Infrastructure.UnitTests</_Parameter1>
+    </AssemblyAttribute>
+  </ItemGroup>
+
 </Project>
