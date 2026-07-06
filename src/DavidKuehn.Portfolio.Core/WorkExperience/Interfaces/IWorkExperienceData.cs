@@ -24,6 +24,6 @@ namespace DavidKuehn.Portfolio.Core.WorkExperience.Interfaces
         /// </summary>
         /// <param name="jobId">The <see cref="Guid">identifier</see> of the job.</param>
         /// <returns>A <see cref="Job"/> object containing all details of the specified job. Otherwise null.</returns>
-        Task<Job> GetJob(Guid jobId);
+        Task<Job?> GetJob(Guid jobId);
     }
 }

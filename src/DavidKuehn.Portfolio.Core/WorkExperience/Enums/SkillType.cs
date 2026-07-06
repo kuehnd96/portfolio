@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace DavidKuehn.Portfolio.Core.WorkExperience.Enums
+﻿namespace DavidKuehn.Portfolio.Core.WorkExperience.Enums
 {
     /// <summary>
     /// Types of skills.

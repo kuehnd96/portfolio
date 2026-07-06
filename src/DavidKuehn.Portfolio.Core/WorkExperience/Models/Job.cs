@@ -12,7 +12,7 @@ namespace DavidKuehn.Portfolio.Core.WorkExperience.Models
         public int EndYear { get; set; }
         public required string Company { get; set; }
         public required string CurrentCompanyName { get; set; }
-        public byte Type { get; set; }
+        public JobType Type { get; set; }
 
         // Title
         public IEnumerable<Title> Titles { get; set; } = Array.Empty<Title>();
