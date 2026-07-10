@@ -34,7 +34,7 @@ namespace DavidKuehn.Portfolio.Infrastructure.WorkExperience.Data
                     // Execute the command
                     using (var reader = await command.ExecuteReaderAsync())
                     {
-                        if (await reader.ReadAsync())
+                        while (await reader.ReadAsync())
                         {
                             var jobResult = new JobResult
                             {
