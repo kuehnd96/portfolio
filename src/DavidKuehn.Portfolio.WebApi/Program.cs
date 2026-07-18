@@ -10,6 +10,8 @@ builder.Services.AddTransient<IApiKeyValidation, ApiKeyValidation>();
 builder.Services.AddScoped<IAuthorizationHandler, ApiKeyHandler>();
 builder.Services.AddHttpContextAccessor();
 
+
+
 builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
