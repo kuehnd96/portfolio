@@ -1,21 +1,30 @@
 ﻿using DavidKuehn.Portfolio.UseCases.General.Interfaces;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace DavidKuehn.Portfolio.UseCases.General
 {
     public class QueryInvoker : IQueryInvoker
     {
-        public async Task<IResult<TResultValue>> InvokeQueryAsync<TQuery, TQueryHandler, TResultValue>(TQueryHandler queryHandler, TQuery query)
-            where TQuery : IQuery
-            where TQueryHandler : IQueryHandler<TQuery, TResultValue>
+        private readonly IServiceProvider _serviceProvider;
+
+        public QueryInvoker(IServiceProvider serviceProvider)
         {
-            if (queryHandler != null)
+            ArgumentNullException.ThrowIfNull(serviceProvider, nameof(serviceProvider));
+            _serviceProvider = serviceProvider;
+        }
+        
+        public async Task<IResult<TResultValue>> InvokeQueryAsync<TQuery, TResultValue>(TQuery query)
+            where TQuery : IQuery
+        {
+            ArgumentNullException.ThrowIfNull(query, nameof(query));
+            
+            var queryHandler = _serviceProvider.GetService<IQueryHandler<TQuery, TResultValue>>();
+            if (queryHandler == null)
             {
-                return await queryHandler.HandleAsync(query);
+                throw new InvalidOperationException("Query handler is not found.");
             }
-            else
-            {
-                throw new InvalidOperationException("Query handler is not initialized.");
-            }
+
+            return await queryHandler.HandleAsync(query);
         }
     }
 }
