@@ -17,7 +17,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DavidKuehn.Portfolio.UI.Web
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DavidKuehn.Portfolio.UI.Web.Client", "DavidKuehn.Portfolio.UI.Web\DavidKuehn.Portfolio.UI.Web.Client\DavidKuehn.Portfolio.UI.Web.Client.csproj", "{473BE43D-43AF-5157-431D-60ED29803493}"
 EndProject
-Project("{42EA0DBD-9CF1-443E-919E-BE9C484E4577}") = "DavidKuehn.Portfolio.Database", "DavidKuehn.Portfolio.Database\DavidKuehn.Portfolio.Database.sqlproj", "{DA442E75-74F5-4BE2-BC2A-3D454647ADF7}"
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "DavidKuehn.Portfolio.Database", "DavidKuehn.Portfolio.Database\DavidKuehn.Portfolio.Database.sqlproj", "{DA442E75-74F5-4BE2-BC2A-3D454647ADF7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DavidKuehn.Portfolio.Core", "DavidKuehn.Portfolio.Core\DavidKuehn.Portfolio.Core.csproj", "{8C487459-02A7-4457-9B6D-A98454EBC6CF}"
 EndProject
@@ -26,6 +26,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DavidKuehn.Portfolio.Infrastructure.UnitTests", "DavidKuehn.Portfolio.Infrastructure.UnitTests\DavidKuehn.Portfolio.Infrastructure.UnitTests.csproj", "{F15804CA-7B93-4219-8E56-135AA2BDD17E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DavidKuehn.Portfolio.UseCases", "DavidKuehn.Portfolio.UseCases\DavidKuehn.Portfolio.UseCases.csproj", "{1A657A54-B289-44B2-8F58-858119CDD20A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DavidKuehn.Portfolio.Infrastructure.IntegrationTests", "DavidKuehn.Portfolio.Infrastructure.IntegrationTests\DavidKuehn.Portfolio.Infrastructure.IntegrationTests.csproj", "{9FD33FD3-1A51-25F5-1BB5-7D7C65C1C54C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DavidKuehn.Portfolio.UseCases.UnitTests", "DavidKuehn.Portfolio.UseCases.UnitTests\DavidKuehn.Portfolio.UseCases.UnitTests.csproj", "{DCA177F0-8756-41E3-A22E-E498ECCFAADE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -75,6 +79,14 @@ Global
 		{1A657A54-B289-44B2-8F58-858119CDD20A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1A657A54-B289-44B2-8F58-858119CDD20A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1A657A54-B289-44B2-8F58-858119CDD20A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9FD33FD3-1A51-25F5-1BB5-7D7C65C1C54C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9FD33FD3-1A51-25F5-1BB5-7D7C65C1C54C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9FD33FD3-1A51-25F5-1BB5-7D7C65C1C54C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9FD33FD3-1A51-25F5-1BB5-7D7C65C1C54C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DCA177F0-8756-41E3-A22E-E498ECCFAADE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DCA177F0-8756-41E3-A22E-E498ECCFAADE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DCA177F0-8756-41E3-A22E-E498ECCFAADE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DCA177F0-8756-41E3-A22E-E498ECCFAADE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
