@@ -1,22 +1,25 @@
 using DavidKuehn.Portfolio.UseCases.General.Enums;
 using DavidKuehn.Portfolio.UseCases.General.Interfaces;
 
-public class Result<TValue> : IResult<TValue>
+namespace DavidKuehn.Portfolio.UseCases.General
 {
-    public ResultStatus Status { get; set; }
-    public TValue Value { get; set; }
-    public string? ErrorMessage { get; set; }
-
-    public Result(ResultStatus status, string? errorMessage)
+    public class Result<TValue> : IResult<TValue>
     {
-        Status = status;
-        Value = default!;
-        ErrorMessage = errorMessage;
-    }
+        public ResultStatus Status { get; set; }
+        public TValue Value { get; set; }
+        public string? ErrorMessage { get; set; }
 
-    public Result(TValue value)
-    {
-        Status = ResultStatus.Ok;
-        Value = value;
+        public Result(ResultStatus status, string? errorMessage)
+        {
+            Status = status;
+            Value = default!;
+            ErrorMessage = errorMessage;
+        }
+
+        public Result(TValue value)
+        {
+            Status = ResultStatus.Ok;
+            Value = value;
+        }
     }
 }

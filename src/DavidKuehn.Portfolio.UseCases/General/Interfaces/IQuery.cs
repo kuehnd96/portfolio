@@ -1,4 +1,4 @@
-﻿namespace DavidKuehn.Portfolio.UseCases
+﻿namespace DavidKuehn.Portfolio.UseCases.General.Interfaces
 {
     /// <summary>
     /// Represents a query that can be executed to retrieve data.
