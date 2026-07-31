@@ -26,7 +26,6 @@ namespace DavidKuehn.Portfolio.UseCases.WorkExperience.Handlers
             {
                 throw new ArgumentNullException(nameof(query));
             }
-            // No need to check for JobId in a list query
 
             IEnumerable<ListJob>? jobs;
 
