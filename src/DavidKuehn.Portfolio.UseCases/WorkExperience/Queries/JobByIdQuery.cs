@@ -10,6 +10,11 @@ namespace DavidKuehn.Portfolio.UseCases.WorkExperience.Queries
         /// <summary>
         /// Gets or sets the unique identifier of the job to retrieve.
         /// </summary>
-        public required Guid JobId { get; init; }
+        public Guid JobId { get; init; }
+
+        public JobByIdQuery(Guid jobId)
+        {
+            JobId = jobId;
+        }
     }
 }

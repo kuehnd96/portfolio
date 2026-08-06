@@ -22,7 +22,7 @@ public class JobByIdQueryHandlerTests
     {
         var handler = new JobByIdQueryHandler(new StubWorkExperienceData());
 
-        var exception = await Assert.ThrowsAsync<ArgumentException>(() => handler.HandleAsync(new JobByIdQuery { JobId = Guid.Empty }));
+        var exception = await Assert.ThrowsAsync<ArgumentException>(() => handler.HandleAsync(new JobByIdQuery(Guid.Empty)));
 
         Assert.Equal("JobId", exception.ParamName);
         Assert.Equal("JobId cannot be empty. (Parameter 'JobId')", exception.Message);
@@ -36,7 +36,7 @@ public class JobByIdQueryHandlerTests
         var data = new StubWorkExperienceData { JobToReturn = job };
         var handler = new JobByIdQueryHandler(data);
 
-        var result = await handler.HandleAsync(new JobByIdQuery { JobId = jobId });
+        var result = await handler.HandleAsync(new JobByIdQuery(jobId));
 
         Assert.Equal(ResultStatus.Ok, result.Status);
         Assert.Same(job, result.Value);
@@ -50,7 +50,7 @@ public class JobByIdQueryHandlerTests
         var jobId = Guid.NewGuid();
         var handler = new JobByIdQueryHandler(new StubWorkExperienceData());
 
-        var result = await handler.HandleAsync(new JobByIdQuery { JobId = jobId });
+        var result = await handler.HandleAsync(new JobByIdQuery(jobId));
 
         Assert.Equal(ResultStatus.NotFound, result.Status);
         Assert.Equal($"Job with ID {jobId} not found.", result.ErrorMessage);
@@ -65,7 +65,7 @@ public class JobByIdQueryHandlerTests
             ExceptionToThrow = new InvalidOperationException("database failure")
         });
 
-        var result = await handler.HandleAsync(new JobByIdQuery { JobId = jobId });
+        var result = await handler.HandleAsync(new JobByIdQuery(jobId));
 
         Assert.Equal(ResultStatus.Error, result.Status);
         Assert.Equal("An error occurred while retrieving the job: database failure", result.ErrorMessage);

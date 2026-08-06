@@ -5,6 +5,8 @@ using DavidKuehn.Portfolio.UseCases.WorkExperience.Handlers;
 using DavidKuehn.Portfolio.UseCases.WorkExperience.Queries;
 using Microsoft.Extensions.DependencyInjection;
 
+namespace DavidKuehn.Portfolio.UseCases.General.Extensions;
+
 public static class ServiceCollectionExtensions
 {
     public static IServiceCollection AddUseCases(this IServiceCollection services)
