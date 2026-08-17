@@ -38,11 +38,6 @@ namespace DavidKuehn.Portfolio.UseCases.WorkExperience.Handlers
                 return new Result<IEnumerable<ListJob>>(ResultStatus.Error, $"An error occurred while retrieving the jobs: {ex.Message}");
             }
 
-            if (jobs == null || !jobs.Any())
-            {
-                return new Result<IEnumerable<ListJob>>(ResultStatus.NotFound, "No jobs found.");
-            }
-
             return new Result<IEnumerable<ListJob>>(jobs);
         }
     }

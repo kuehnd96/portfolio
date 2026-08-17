@@ -7,7 +7,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace DavidKuehn.Portfolio.WebApi.Controllers;
 [ApiController]
-[Route("[workexperience]")]
+[Route("workexperience")]
+[Authorize(Policy = "ApiKeyPolicy")]
 public class WorkExperienceController : ControllerBase
 {
     private readonly ILogger<WorkExperienceController> _logger;
@@ -19,8 +20,7 @@ public class WorkExperienceController : ControllerBase
         _queryInvoker = queryInvoker;
     }
 
-    [HttpGet(Name = "GetJob")]
-    [Authorize(Policy = "ApiKeyPolicy")]
+    [HttpGet("GetJob/{jobId}", Name = "GetJobById")]
     public async Task<ActionResult<Job>> Get(Guid jobId)
     {
         var result = await _queryInvoker.InvokeQueryAsync<JobByIdQuery, Job>(new JobByIdQuery(jobId));
@@ -36,6 +36,20 @@ public class WorkExperienceController : ControllerBase
             return NotFound(result.ErrorMessage);
         }
         
+        return Ok(result.Value);
+    }
+
+    [HttpGet("GetJobs", Name = "GetJobs")]  
+    public async Task<ActionResult<IEnumerable<ListJob>>> GetJobs()
+    {
+        var result = await _queryInvoker.InvokeQueryAsync<JobListQuery, IEnumerable<ListJob>>(new JobListQuery());
+
+        if (result.Status == ResultStatus.Error)
+        {
+            _logger.LogError(result.ErrorMessage);
+            return StatusCode(500, result.ErrorMessage);
+        }
+
         return Ok(result.Value);
     }
 }

@@ -46,7 +46,7 @@ public class JobListQueryHandlerTests
     }
 
     [Fact]
-    public async Task HandleAsync_WhenNoJobsExist_ReturnsNotFoundResult()
+    public async Task HandleAsync_WhenNoJobsExist_ReturnsEmptyCollection()
     {
         var handler = new JobListQueryHandler(new StubWorkExperienceData
         {
@@ -55,8 +55,8 @@ public class JobListQueryHandlerTests
 
         var result = await handler.HandleAsync(new JobListQuery());
 
-        Assert.Equal(ResultStatus.NotFound, result.Status);
-        Assert.Equal("No jobs found.", result.ErrorMessage);
+        Assert.Equal(ResultStatus.Ok, result.Status);
+        Assert.Empty(result.Value);
     }
 
     [Fact]

@@ -18,6 +18,7 @@ public static class ServiceCollectionExtensions
         
         // Register query handlers
         services.AddScoped<IQueryHandler<JobByIdQuery, Job>, JobByIdQueryHandler>();
+        services.AddScoped<IQueryHandler<JobListQuery, IEnumerable<ListJob>>, JobListQueryHandler>();
 
         return services;
     }
