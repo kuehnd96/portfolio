@@ -8,6 +8,8 @@
         None=0,
         Technical,
         Soft,
-        Industry
+        Industry,
+        Tool,
+        DesignPattern
     }
 }
