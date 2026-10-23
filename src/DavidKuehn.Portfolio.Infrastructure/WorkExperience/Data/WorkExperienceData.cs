@@ -1,8 +1,8 @@
 ﻿using DavidKuehn.Portfolio.Core.WorkExperience.Enums;
 using DavidKuehn.Portfolio.Core.WorkExperience.Interfaces;
-using DavidKuehn.Portfolio.Core.WorkExperience.Models;
+using CoreModels = DavidKuehn.Portfolio.Core.WorkExperience.Models;
 using DavidKuehn.Portfolio.Infrastructure.WorkExperience.Adapters;
-using DavidKuehn.Portfolio.Infrastructure.WorkExperience.Data.Models;
+using DataModels = DavidKuehn.Portfolio.Infrastructure.WorkExperience.Data.Models;
 using Microsoft.Data.SqlClient;
 
 namespace DavidKuehn.Portfolio.Infrastructure.WorkExperience.Data
@@ -16,57 +16,81 @@ namespace DavidKuehn.Portfolio.Infrastructure.WorkExperience.Data
             _connectionString = connectionString;
         }
 
-        public async Task<Job?> GetJob(Guid jobId)
+        public async Task<Core.WorkExperience.Models.Job> GetJob(Guid jobId)
         {
-            var jobResults = new List<JobResult>();
+            List<Models.Skill> skills = new List<Models.Skill>();
+            List<Models.Title> titles = new List<Models.Title>();
+            Models.Job jobResult = null;
 
             using (var connection = new SqlConnection(_connectionString))
             {
-                // Open the connection
                 await connection.OpenAsync();
 
-                // Create a command
                 using (var command = new SqlCommand("dbo.GetJob", connection))
                 {
                     command.CommandType = System.Data.CommandType.StoredProcedure;
                     command.Parameters.AddWithValue("@JobId", jobId);
 
-                    // Execute the command
                     using (var reader = await command.ExecuteReaderAsync())
                     {
-                        while (await reader.ReadAsync())
+                        // Read job (only one expected)
+                        if (await reader.ReadAsync())
                         {
-                            var jobResult = new JobResult
+                            jobResult = new Models.Job()
                             {
                                 Id = reader.GetGuid(reader.GetOrdinal("Id")),
                                 StartYear = reader.GetInt32(reader.GetOrdinal("StartYear")),
                                 EndYear = reader.GetInt32(reader.GetOrdinal("EndYear")),
                                 Company = reader.GetString(reader.GetOrdinal("Company")),
                                 CurrentCompanyName = reader.GetString(reader.GetOrdinal("CurrentCompanyName")),
-                                Type = (byte)reader.GetInt32(reader.GetOrdinal("Type")),
-                                TitleId = reader.IsDBNull(reader.GetOrdinal("TitleId")) ? null : reader.GetGuid(reader.GetOrdinal("TitleId")),
-                                Title = reader.IsDBNull(reader.GetOrdinal("Title")) ? null : reader.GetString(reader.GetOrdinal("Title")),
-                                TitleStartYear = reader.IsDBNull(reader.GetOrdinal("TitleStartYear")) ? null : reader.GetInt32(reader.GetOrdinal("TitleStartYear")),
-                                TitleEndYear = reader.IsDBNull(reader.GetOrdinal("TitleEndYear")) ? null : reader.GetInt32(reader.GetOrdinal("TitleEndYear")),
-                                Details = reader.IsDBNull(reader.GetOrdinal("Details")) ? null : reader.GetString(reader.GetOrdinal("Details")),
-                                BulletPoints = reader.IsDBNull(reader.GetOrdinal("BulletPoints")) ? null : reader.GetString(reader.GetOrdinal("BulletPoints")),
-                                SkillId = reader.IsDBNull(reader.GetOrdinal("SkillId")) ? null : reader.GetGuid(reader.GetOrdinal("SkillId")),
-                                SkillName = reader.IsDBNull(reader.GetOrdinal("SkillName")) ? null : reader.GetString(reader.GetOrdinal("SkillName")),
-                                SkillType = reader.IsDBNull(reader.GetOrdinal("SkillType")) ? null : (Int16?)reader.GetInt16(reader.GetOrdinal("SkillType"))
+                                Type = (short)reader.GetByte(reader.GetOrdinal("Type"))
                             };
+                        }
 
-                            jobResults.Add(jobResult);
+                        if (await reader.NextResultAsync())
+                        {
+                            while (await reader.ReadAsync())
+                            {
+                                var titleResult = new Models.Title
+                                {
+                                    Id = reader.GetGuid(reader.GetOrdinal("Id")),
+                                    TitleName = reader.GetString(reader.GetOrdinal("Title")),
+                                    StartYear = reader.GetInt32(reader.GetOrdinal("StartYear")),
+                                    EndYear = reader.GetInt32(reader.GetOrdinal("EndYear")),
+                                    Details = reader.GetString(reader.GetOrdinal("Details")),
+                                    BulletPoints = reader.GetString(reader.GetOrdinal("BulletPoints"))
+                                };
+
+                                titles.Add(titleResult);
+                            }
+                        }
+
+                        if (await reader.NextResultAsync())
+                        {
+                            while (await reader.ReadAsync())
+                            {
+                                var skillResult = new Models.Skill
+                                {
+                                    Id = reader.GetGuid(reader.GetOrdinal("SkillId")),
+                                    Name = reader.GetString(reader.GetOrdinal("Name")),
+                                    Type = reader.GetByte(reader.GetOrdinal("Type"))
+                                };
+
+                                skills.Add(skillResult);
+                            }
                         }
                     }
                 }
             }
 
-            return WorkExperienceAdapter.ToJob(jobResults);
+            if (jobResult == null) return null;
+
+            return WorkExperienceAdapter.ToJob(jobResult, titles, skills);
         }
 
-        public async Task<IEnumerable<ListJob>> GetJobList()
+        public async Task<IEnumerable<CoreModels.ListJob>> GetJobList()
         {
-            var jobs = new List<ListJob>();
+            var jobs = new List<CoreModels.ListJob>();
 
             using (var connection = new SqlConnection(_connectionString))
             {
@@ -83,7 +107,7 @@ namespace DavidKuehn.Portfolio.Infrastructure.WorkExperience.Data
                     {
                         while (await reader.ReadAsync())
                         {
-                            var listJob = new ListJob
+                            var listJob = new CoreModels.ListJob
                             {
                                 StartYear = reader.GetInt32(reader.GetOrdinal("StartYear")),
                                 EndYear = reader.GetInt32(reader.GetOrdinal("EndYear")),
@@ -101,9 +125,9 @@ namespace DavidKuehn.Portfolio.Infrastructure.WorkExperience.Data
             return jobs;
         }
 
-        public async Task<IEnumerable<Skill>> GetSkills()
+        public async Task<IEnumerable<CoreModels.Skill>> GetSkills()
         {
-            var skills = new List<Skill>();
+            var skills = new List<CoreModels.Skill>();
 
             using (var connection = new SqlConnection(_connectionString))
             {
@@ -120,11 +144,11 @@ namespace DavidKuehn.Portfolio.Infrastructure.WorkExperience.Data
                     {
                         while (await reader.ReadAsync())
                         {
-                            var skill = new Skill
+                            var skill = new CoreModels.Skill
                             {
                                 Id = reader.GetGuid(reader.GetOrdinal("Id")),
                                 Name = reader.GetString(reader.GetOrdinal("Name")), 
-                                Type = (SkillType)reader.GetInt32(reader.GetOrdinal("Type"))
+                                Type = (SkillType)reader.GetByte(reader.GetOrdinal("Type"))
                             };
 
                             skills.Add(skill);

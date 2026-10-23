@@ -1,167 +1,125 @@
 using DavidKuehn.Portfolio.Core.WorkExperience.Enums;
 using DavidKuehn.Portfolio.Infrastructure.WorkExperience.Adapters;
-using DavidKuehn.Portfolio.Infrastructure.WorkExperience.Data.Models;
+using DataModels = DavidKuehn.Portfolio.Infrastructure.WorkExperience.Data.Models;
 
 namespace DavidKuehn.Portfolio.Infrastructure.UnitTests.WorkExperience.Adapters;
 
 public class WorkExperienceAdapterTests
 {
     [Fact]
-    public void ToJob_WhenJobResultsAreEmpty_ReturnsNull()
+    public void ToJob_WhenJobAndCollectionsAreProvided_MapsAllJobData()
     {
         // Arrange
-        var jobResults = Enumerable.Empty<JobResult>();
-
-        // Act
-        var result = WorkExperienceAdapter.ToJob(jobResults);
-
-        // Assert
-        Assert.Null(result);
-    }
-
-    [Fact]
-    public void ToJob_WhenJobResultsAreProvided_MapsJobTitlesAndValidSkills()
-    {
-        // Arrange
-        var jobId = Guid.NewGuid();
-        var firstTitleId = Guid.NewGuid();
-        var secondTitleId = Guid.NewGuid();
-        var firstSkillId = Guid.NewGuid();
-        var secondSkillId = Guid.NewGuid();
-
-        var jobResults = new[]
+        var job = new DataModels.Job
         {
-            new JobResult
+            Id = Guid.NewGuid(),
+            StartYear = 2020,
+            EndYear = 2024,
+            Company = "Contoso",
+            CurrentCompanyName = "Contoso Inc.",
+            Type = (short)JobType.Hybrid
+        };
+
+        var titles = new[]
+        {
+            new DataModels.Title
             {
-                Id = jobId,
+                Id = Guid.NewGuid(),
+                TitleName = "Developer",
                 StartYear = 2020,
-                EndYear = 2024,
-                Company = "Contoso",
-                CurrentCompanyName = "Contoso Inc.",
-                Type = (short)JobType.Hybrid,
-                TitleId = firstTitleId,
-                Title = "Developer",
-                TitleStartYear = 2020,
-                TitleEndYear = 2022,
+                EndYear = 2022,
                 Details = "Built APIs",
-                BulletPoints = "C#, SQL",
-                SkillId = firstSkillId,
-                SkillName = "C#",
-                SkillType = (short)SkillType.Technical
+                BulletPoints = "C#, SQL"
             },
-            new JobResult
+            new DataModels.Title
             {
-                Id = jobId,
-                StartYear = 2020,
+                Id = Guid.NewGuid(),
+                TitleName = "Senior Developer",
+                StartYear = 2022,
                 EndYear = 2024,
-                Company = "Contoso",
-                CurrentCompanyName = "Contoso Inc.",
-                Type = (short)JobType.Hybrid,
-                TitleId = secondTitleId,
-                Title = "Senior Developer",
-                TitleStartYear = 2022,
-                TitleEndYear = 2024,
                 Details = "Led projects",
-                BulletPoints = "Architecture, Mentoring",
-                SkillId = null,
-                SkillName = "ShouldBeIgnored",
-                SkillType = (short)SkillType.Soft
-            },
-            new JobResult
+                BulletPoints = "Architecture, mentoring"
+            }
+        };
+
+        var skills = new[]
+        {
+            new DataModels.Skill
             {
-                Id = jobId,
-                StartYear = 2020,
-                EndYear = 2024,
-                Company = "Contoso",
-                CurrentCompanyName = "Contoso Inc.",
-                Type = (short)JobType.Hybrid,
-                TitleId = null,
-                Title = null,
-                TitleStartYear = null,
-                TitleEndYear = null,
-                Details = null,
-                BulletPoints = null,
-                SkillId = secondSkillId,
-                SkillName = "Communication",
-                SkillType = null
+                Id = Guid.NewGuid(),
+                Name = "C#",
+                Type = (short)SkillType.Technical
+            },
+            new DataModels.Skill
+            {
+                Id = Guid.NewGuid(),
+                Name = "Communication",
+                Type = (short)SkillType.None
             }
         };
 
         // Act
-        var result = WorkExperienceAdapter.ToJob(jobResults);
+        var result = WorkExperienceAdapter.ToJob(job, titles, skills);
 
         // Assert
         Assert.NotNull(result);
-        Assert.Equal(jobId, result.Id);
-        Assert.Equal(2020, result.StartYear);
-        Assert.Equal(2024, result.EndYear);
-        Assert.Equal("Contoso", result.Company);
-        Assert.Equal("Contoso Inc.", result.CurrentCompanyName);
+        Assert.Equal(job.Id, result.Id);
+        Assert.Equal(job.StartYear, result.StartYear);
+        Assert.Equal(job.EndYear, result.EndYear);
+        Assert.Equal(job.Company, result.Company);
+        Assert.Equal(job.CurrentCompanyName, result.CurrentCompanyName);
         Assert.Equal(JobType.Hybrid, result.Type);
 
-        var titles = result.Titles.ToList();
-        Assert.Equal(3, titles.Count);
+        var mappedTitles = result.Titles.ToList();
+        Assert.Equal(2, mappedTitles.Count);
+        Assert.Equal(titles[0].Id, mappedTitles[0].Id);
+        Assert.Equal(titles[0].TitleName, mappedTitles[0].TitleName);
+        Assert.Equal(titles[0].StartYear, mappedTitles[0].StartYear);
+        Assert.Equal(titles[0].EndYear, mappedTitles[0].EndYear);
+        Assert.Equal(titles[0].Details, mappedTitles[0].Details);
+        Assert.Equal(titles[0].BulletPoints, mappedTitles[0].BulletPoints);
 
-        Assert.Equal(firstTitleId, titles[0].Id);
-        Assert.Equal("Developer", titles[0].Name);
-        Assert.Equal(2020, titles[0].StartYear);
-        Assert.Equal(2022, titles[0].EndYear);
-        Assert.Equal("Built APIs", titles[0].Details);
-        Assert.Equal("C#, SQL", titles[0].BulletPoints);
+        Assert.Equal(titles[1].Id, mappedTitles[1].Id);
+        Assert.Equal(titles[1].TitleName, mappedTitles[1].TitleName);
+        Assert.Equal(titles[1].StartYear, mappedTitles[1].StartYear);
+        Assert.Equal(titles[1].EndYear, mappedTitles[1].EndYear);
+        Assert.Equal(titles[1].Details, mappedTitles[1].Details);
+        Assert.Equal(titles[1].BulletPoints, mappedTitles[1].BulletPoints);
 
-        Assert.Equal(secondTitleId, titles[1].Id);
-        Assert.Equal("Senior Developer", titles[1].Name);
-        Assert.Equal(2022, titles[1].StartYear);
-        Assert.Equal(2024, titles[1].EndYear);
-        Assert.Equal("Led projects", titles[1].Details);
-        Assert.Equal("Architecture, Mentoring", titles[1].BulletPoints);
+        var mappedSkills = result.Skills.ToList();
+        Assert.Equal(2, mappedSkills.Count);
+        Assert.Equal(skills[0].Id, mappedSkills[0].Id);
+        Assert.Equal(skills[0].Name, mappedSkills[0].Name);
+        Assert.Equal(SkillType.Technical, mappedSkills[0].Type);
 
-        Assert.Null(titles[2].Id);
-        Assert.Null(titles[2].Name);
-
-        var skills = result.Skills.ToList();
-        Assert.Equal(2, skills.Count);
-
-        Assert.Equal(firstSkillId, skills[0].Id);
-        Assert.Equal("C#", skills[0].Name);
-        Assert.Equal(SkillType.Technical, skills[0].Type);
-
-        Assert.Equal(secondSkillId, skills[1].Id);
-        Assert.Equal("Communication", skills[1].Name);
-        Assert.Equal(SkillType.None, skills[1].Type);
+        Assert.Equal(skills[1].Id, mappedSkills[1].Id);
+        Assert.Equal(skills[1].Name, mappedSkills[1].Name);
+        Assert.Equal(SkillType.None, mappedSkills[1].Type);
     }
 
     [Fact]
-    public void ToJob_WhenJobLevelValuesDifferAcrossRows_UsesFirstRowForJobFields()
+    public void ToJob_WhenCollectionsAreEmpty_ReturnsEmptyCollections()
     {
         // Arrange
-        var jobId = Guid.NewGuid();
-
-        var jobResults = new[]
+        var job = new DataModels.Job
         {
-            new JobResult
-            {
-                Id = jobId,
-                Company = "First Co",
-                CurrentCompanyName = "First Co",
-                Type = (short)JobType.Office
-            },
-            new JobResult
-            {
-                Id = jobId,
-                Company = "Second Co",
-                CurrentCompanyName = "Second Co",
-                Type = (short)JobType.Remote
-            }
+            Id = Guid.NewGuid(),
+            StartYear = 2019,
+            EndYear = 2021,
+            Company = "Northwind",
+            CurrentCompanyName = "Northwind Labs",
+            Type = (short)JobType.Office
         };
 
         // Act
-        var result = WorkExperienceAdapter.ToJob(jobResults);
+        var result = WorkExperienceAdapter.ToJob(job, Array.Empty<DataModels.Title>(), Array.Empty<DataModels.Skill>());
 
         // Assert
         Assert.NotNull(result);
-        Assert.Equal(jobId, result.Id);
-        Assert.Equal("First Co", result.Company);
+        Assert.Equal(job.Id, result.Id);
+        Assert.Equal(job.Company, result.Company);
         Assert.Equal(JobType.Office, result.Type);
+        Assert.Empty(result.Titles);
+        Assert.Empty(result.Skills);
     }
 }

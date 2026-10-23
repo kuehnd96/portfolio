@@ -1,45 +1,38 @@
 ﻿using DavidKuehn.Portfolio.Core.WorkExperience.Enums;
 using DavidKuehn.Portfolio.Core.WorkExperience.Models;
 using DavidKuehn.Portfolio.Infrastructure.WorkExperience.Data.Models;
+using CoreModels = DavidKuehn.Portfolio.Core.WorkExperience.Models;
 
 namespace DavidKuehn.Portfolio.Infrastructure.WorkExperience.Adapters
 {
     internal static class WorkExperienceAdapter
     {
-        internal static Job? ToJob(IEnumerable<JobResult> jobResults)
+        internal static CoreModels.Job ToJob(Data.Models.Job job, IEnumerable<Data.Models.Title> titles, IEnumerable<Data.Models.Skill> skills)
         {
-            var jobResultList = jobResults.ToList();
-            var firstResult = jobResultList.FirstOrDefault();
-
-            if (firstResult is null)
+            return new CoreModels.Job
             {
-                return null;
-            }
-
-            return new Job
-            {
-                Id = firstResult.Id,
-                StartYear = firstResult.StartYear,
-                EndYear = firstResult.EndYear,
-                Company = firstResult.Company,
-                CurrentCompanyName = firstResult.CurrentCompanyName,
-                Type = (JobType)firstResult.Type,
-                Titles = jobResultList.Select(result => new Title
-                {
-                    Id = result.TitleId,
-                    Name = result.Title,
-                    StartYear = result.TitleStartYear,
-                    EndYear = result.TitleEndYear,
-                    Details = result.Details,
-                    BulletPoints = result.BulletPoints
-                }).ToList(),
-                Skills = jobResultList
-                    .Where(result => result.SkillId.HasValue && !string.IsNullOrEmpty(result.SkillName))
-                    .Select(result => new Skill
+                Id = job.Id,
+                StartYear = job.StartYear,
+                EndYear = job.EndYear,
+                Company = job.Company,
+                CurrentCompanyName = job.CurrentCompanyName,
+                Type = (JobType)job.Type,
+                Titles = titles
+                    .Select(result => new CoreModels.Title
                     {
-                        Id = result.SkillId!.Value,
-                        Name = result.SkillName!,
-                        Type = result.SkillType.HasValue ? (SkillType)result.SkillType.Value : SkillType.None
+                        Id = result.Id,
+                        TitleName = result.TitleName,
+                        StartYear = result.StartYear,
+                        EndYear = result.EndYear,
+                        Details = result.Details,
+                        BulletPoints = result.BulletPoints
+                    }).ToList(),
+                Skills = skills
+                    .Select(result => new CoreModels.Skill
+                    {
+                        Id = result.Id,
+                        Name = result.Name,
+                        Type = (SkillType)result.Type
                     }).ToList()
             };
         }

@@ -17,11 +17,10 @@ BEGIN
 
     -- 2) Title row(s) for that job
     SELECT
-        t.[Id] AS [TitleId],
-        t.[JobId],
+        t.[Id],
         t.[Title],
-        t.[StartYear] AS [TitleStartYear],
-        t.[EndYear] AS [TitleEndYear],
+        t.[StartYear],
+        t.[EndYear],
         t.[Details],
         t.[BulletPoints]
     FROM [dbo].[WorkExperienceTitles] AS t
@@ -29,10 +28,9 @@ BEGIN
 
     -- 3) Skills for that job
     SELECT
-        js.[JobId],
         js.[SkillId],
-        s.[Name] AS [SkillName],
-        s.[Type] AS [SkillType]
+        s.[Name],
+        s.[Type]
     FROM [dbo].[WorkExperienceJobSkills] AS js
     INNER JOIN [dbo].[WorkExperienceSkills] AS s
         ON s.[Id] = js.[SkillId]

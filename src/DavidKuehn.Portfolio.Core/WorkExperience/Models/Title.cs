@@ -3,13 +3,13 @@
     /// <summary>
     /// Model a title for a job.
     /// </summary>
-    public record class Title
+    public record Title
     {
-        public Guid? Id { get; set; }
-        public string? Name { get; set; }
-        public int? StartYear { get; set; }
-        public int? EndYear { get; set; }
-        public string? Details { get; set; }
-        public string? BulletPoints { get; set; }
+        public required Guid Id { get; set; }
+        public required string TitleName { get; set; }
+        public required int StartYear { get; set; }
+        public required int EndYear { get; set; }
+        public required string Details { get; set; }
+        public required string BulletPoints { get; set; }
     }
 }

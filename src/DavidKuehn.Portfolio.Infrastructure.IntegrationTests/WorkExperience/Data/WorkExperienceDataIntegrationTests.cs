@@ -59,7 +59,7 @@ public class WorkExperienceDataIntegrationTests
 
         var title = Assert.Single(result.Titles);
         Assert.Equal(titleId, title.Id);
-        Assert.Equal("Senior Engineer", title.Name);
+        Assert.Equal("Senior Engineer", title.TitleName);
         Assert.Equal(2022, title.StartYear);
         Assert.Equal(2024, title.EndYear);
         Assert.Equal("Led delivery", title.Details);
@@ -166,7 +166,7 @@ public class WorkExperienceDataIntegrationTests
             new SqlParameter("@EndYear", endYear),
             new SqlParameter("@Company", company),
             new SqlParameter("@CurrentCompanyName", currentCompanyName),
-            new SqlParameter("@Type", (byte)jobType));
+            new SqlParameter("@Type", (short)jobType));
     }
 
     private Task SeedTitleAsync(
@@ -179,7 +179,7 @@ public class WorkExperienceDataIntegrationTests
         string bulletPoints)
     {
         const string sql = """
-            INSERT INTO [dbo].[WorkExperienceTitle]
+            INSERT INTO [dbo].[WorkExperienceTitles]
                 ([Id], [JobId], [Title], [StartYear], [EndYear], [Details], [BulletPoints])
             VALUES
                 (@Id, @JobId, @Title, @StartYear, @EndYear, @Details, @BulletPoints);
@@ -226,7 +226,7 @@ public class WorkExperienceDataIntegrationTests
     private Task SeedSkillAsync(Guid skillId, string name, SkillType skillType)
     {
         const string sql = """
-            INSERT INTO [dbo].[WorkExperienceSkill]
+            INSERT INTO [dbo].[WorkExperienceSkills]
                 ([Id], [Name], [Type])
             VALUES
                 (@Id, @Name, @Type);
@@ -242,7 +242,7 @@ public class WorkExperienceDataIntegrationTests
     private Task SeedJobSkillAsync(Guid jobId, Guid skillId)
     {
         const string sql = """
-            INSERT INTO [dbo].[WorkExperienceJobSkill]
+            INSERT INTO [dbo].[WorkExperienceJobSkills]
                 ([JobId], [SkillId])
             VALUES
                 (@JobId, @SkillId);

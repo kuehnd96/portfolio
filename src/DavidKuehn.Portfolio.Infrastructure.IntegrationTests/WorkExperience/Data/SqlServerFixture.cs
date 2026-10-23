@@ -29,10 +29,9 @@ public sealed class SqlServerFixture : IAsyncLifetime
     public async Task ResetAsync()
     {
         const string resetSql = """
-            DELETE FROM [dbo].[WorkExperienceJobSkill];
-            DELETE FROM [dbo].[WorkExperienceTitle];
+            DELETE FROM [dbo].[WorkExperienceJobSkills];
             DELETE FROM [dbo].[WorkExperienceTitles];
-            DELETE FROM [dbo].[WorkExperienceSkill];
+            DELETE FROM [dbo].[WorkExperienceSkills];
             DELETE FROM [dbo].[WorkExperienceJobs];
             """;
 
@@ -60,10 +59,9 @@ public sealed class SqlServerFixture : IAsyncLifetime
             IF OBJECT_ID('dbo.GetJobList', 'P') IS NOT NULL DROP PROCEDURE [dbo].[GetJobList];
             IF OBJECT_ID('dbo.GetAllSkills', 'P') IS NOT NULL DROP PROCEDURE [dbo].[GetAllSkills];
 
-            IF OBJECT_ID('dbo.WorkExperienceJobSkill', 'U') IS NOT NULL DROP TABLE [dbo].[WorkExperienceJobSkill];
-            IF OBJECT_ID('dbo.WorkExperienceTitle', 'U') IS NOT NULL DROP TABLE [dbo].[WorkExperienceTitle];
+            IF OBJECT_ID('dbo.WorkExperienceJobSkills', 'U') IS NOT NULL DROP TABLE [dbo].[WorkExperienceJobSkills];
             IF OBJECT_ID('dbo.WorkExperienceTitles', 'U') IS NOT NULL DROP TABLE [dbo].[WorkExperienceTitles];
-            IF OBJECT_ID('dbo.WorkExperienceSkill', 'U') IS NOT NULL DROP TABLE [dbo].[WorkExperienceSkill];
+            IF OBJECT_ID('dbo.WorkExperienceSkills', 'U') IS NOT NULL DROP TABLE [dbo].[WorkExperienceSkills];
             IF OBJECT_ID('dbo.WorkExperienceJobs', 'U') IS NOT NULL DROP TABLE [dbo].[WorkExperienceJobs];
 
             CREATE TABLE [dbo].[WorkExperienceJobs]
@@ -73,19 +71,7 @@ public sealed class SqlServerFixture : IAsyncLifetime
                 [EndYear] INT NOT NULL,
                 [Company] NVARCHAR(50) NOT NULL,
                 [CurrentCompanyName] NVARCHAR(50) NOT NULL,
-                [Type] INT NOT NULL
-            );
-
-            CREATE TABLE [dbo].[WorkExperienceTitle]
-            (
-                [Id] UNIQUEIDENTIFIER NOT NULL PRIMARY KEY,
-                [JobId] UNIQUEIDENTIFIER NOT NULL,
-                [Title] VARCHAR(50) NOT NULL,
-                [StartYear] INT NOT NULL,
-                [EndYear] INT NOT NULL,
-                [Details] NVARCHAR(100) NOT NULL,
-                [BulletPoints] VARCHAR(MAX) NOT NULL,
-                CONSTRAINT [FK_WorkExperienceTitle_Jobs] FOREIGN KEY ([JobId]) REFERENCES [dbo].[WorkExperienceJobs]([Id])
+                [Type] TINYINT NOT NULL
             );
 
             CREATE TABLE [dbo].[WorkExperienceTitles]
@@ -100,20 +86,20 @@ public sealed class SqlServerFixture : IAsyncLifetime
                 CONSTRAINT [FK_WorkExperienceTitles_Jobs] FOREIGN KEY ([JobId]) REFERENCES [dbo].[WorkExperienceJobs]([Id])
             );
 
-            CREATE TABLE [dbo].[WorkExperienceSkill]
+            CREATE TABLE [dbo].[WorkExperienceSkills]
             (
                 [Id] UNIQUEIDENTIFIER NOT NULL PRIMARY KEY,
                 [Name] VARCHAR(50) NOT NULL,
-                [Type] INT NOT NULL
+                [Type] TINYINT NOT NULL
             );
 
-            CREATE TABLE [dbo].[WorkExperienceJobSkill]
+            CREATE TABLE [dbo].[WorkExperienceJobSkills]
             (
                 [JobId] UNIQUEIDENTIFIER NOT NULL,
                 [SkillId] UNIQUEIDENTIFIER NOT NULL,
-                CONSTRAINT [PK_WorkExperienceJobSkill] PRIMARY KEY ([JobId], [SkillId]),
-                CONSTRAINT [FK_WorkExperienceJobSkill_Jobs] FOREIGN KEY ([JobId]) REFERENCES [dbo].[WorkExperienceJobs]([Id]),
-                CONSTRAINT [FK_WorkExperienceJobSkill_WorkExperienceSkill] FOREIGN KEY ([SkillId]) REFERENCES [dbo].[WorkExperienceSkill]([Id])
+                CONSTRAINT [PK_WorkExperienceJobSkills] PRIMARY KEY ([JobId], [SkillId]),
+                CONSTRAINT [FK_WorkExperienceJobSkills_Jobs] FOREIGN KEY ([JobId]) REFERENCES [dbo].[WorkExperienceJobs]([Id]),
+                CONSTRAINT [FK_WorkExperienceJobSkills_Skills] FOREIGN KEY ([SkillId]) REFERENCES [dbo].[WorkExperienceSkills]([Id])
             );
             """;
 
@@ -121,27 +107,38 @@ public sealed class SqlServerFixture : IAsyncLifetime
             CREATE PROCEDURE [dbo].[GetJob]
                 @JobId UNIQUEIDENTIFIER
             AS
+            BEGIN
+                SET NOCOUNT ON;
+
                 SELECT
                     j.[Id],
                     j.[StartYear],
                     j.[EndYear],
                     j.[Company],
                     j.[CurrentCompanyName],
-                    j.[Type],
-                    t.[Id] AS [TitleId],
-                    t.[Title],
-                    t.[StartYear] AS [TitleStartYear],
-                    t.[EndYear] AS [TitleEndYear],
-                    t.[Details],
-                    t.[BulletPoints],
-                    js.[SkillId],
-                    s.[Name] AS [SkillName],
-                    CAST(s.[Type] AS SMALLINT) AS [SkillType]
-                FROM [dbo].[WorkExperienceJobs] j
-                LEFT JOIN [dbo].[WorkExperienceTitle] t ON t.[JobId] = j.[Id]
-                LEFT JOIN [dbo].[WorkExperienceJobSkill] js ON js.[JobId] = j.[Id]
-                LEFT JOIN [dbo].[WorkExperienceSkill] s ON s.[Id] = js.[SkillId]
+                    j.[Type]
+                FROM [dbo].[WorkExperienceJobs] AS j
                 WHERE j.[Id] = @JobId;
+
+                SELECT
+                    t.[Id],
+                    t.[Title],
+                    t.[StartYear],
+                    t.[EndYear],
+                    t.[Details],
+                    t.[BulletPoints]
+                FROM [dbo].[WorkExperienceTitles] AS t
+                WHERE t.[JobId] = @JobId;
+
+                SELECT
+                    js.[SkillId],
+                    s.[Name],
+                    s.[Type]
+                FROM [dbo].[WorkExperienceJobSkills] AS js
+                INNER JOIN [dbo].[WorkExperienceSkills] AS s
+                    ON s.[Id] = js.[SkillId]
+                WHERE js.[JobId] = @JobId;
+            END;
             """;
 
         const string createGetJobListSql = """
@@ -175,12 +172,11 @@ public sealed class SqlServerFixture : IAsyncLifetime
             BEGIN
                 SET NOCOUNT ON;
 
-                SELECT
+                SELECT 
                     s.[Id],
                     s.[Name],
-                    s.[Type]
-                FROM [dbo].[WorkExperienceSkill] s
-                ORDER BY s.[Type], s.[Name];
+                    s.[Type] FROM [dbo].[WorkExperienceSkills] s
+                ORDER BY s.[Type], s.[Name]
             END;
             """;
 
