@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Codebase Health Dashboard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            background: white;
+            border-radius: 12px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+        }
+        
+        .header h1 {
+            font-size: 2.5em;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        
+        .header .date {
+            color: #999;
+            font-size: 0.9em;
+            margin-bottom: 20px;
+        }
+        
+        .header .stack {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+        
+        .stack-item {
+            background: #f5f5f5;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            color: #666;
+            border-left: 3px solid #667eea;
+        }
+        
+        .overall-score {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+        
+        .score-circle {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3em;
+            font-weight: bold;
+            color: white;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+        }
+        
+        .score-circle.strong {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .score-circle.healthy {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+        
+        .score-circle.needs-work {
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+        }
+        
+        .score-circle.at-risk {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);
+        }
+        
+        .score-info h2 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+        
+        .score-info p {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+        
+        .summary {
+            background: #f9f9f9;
+            padding: 20px;
+            border-left: 4px solid #667eea;
+            border-radius: 4px;
+            font-size: 0.95em;
+            line-height: 1.7;
+            color: #555;
+        }
+        
+        .signals {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+        
+        .signals h2 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 1.5em;
+        }
+        
+        .signal-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        .signal-card {
+            background: #f9f9f9;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 20px;
+            border-left: 4px solid #667eea;
+        }
+        
+        .signal-name {
+            color: #999;
+            font-size: 0.85em;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+            letter-spacing: 1px;
+        }
+        
+        .signal-value {
+            color: #333;
+            font-size: 1.2em;
+            font-weight: 500;
+        }
+        
+        .categories {
+            display: grid;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .category {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+        
+        .category-header {
+            padding: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .category-title {
+            flex: 1;
+        }
+        
+        .category-title h3 {
+            color: #333;
+            font-size: 1.3em;
+            margin-bottom: 5px;
+        }
+        
+        .category-verdict {
+            font-size: 0.9em;
+            color: #999;
+        }
+        
+        .category-score-container {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        .category-score-circle {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8em;
+            font-weight: bold;
+            color: white;
+        }
+        
+        .category-score-circle.strong {
+            background: #667eea;
+        }
+        
+        .category-score-circle.healthy {
+            background: #48c6ef;
+        }
+        
+        .category-score-circle.needs-work {
+            background: #f39c12;
+        }
+        
+        .category-score-circle.at-risk {
+            background: #e74c3c;
+        }
+        
+        .category-findings {
+            padding: 30px;
+        }
+        
+        .finding {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .finding:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        
+        .severity-badge {
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 0.85em;
+            font-weight: 600;
+            white-space: nowrap;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+        
+        .severity-critical {
+            background: #ffe6e6;
+            color: #d32f2f;
+        }
+        
+        .severity-high {
+            background: #fff3e0;
+            color: #f57c00;
+        }
+        
+        .severity-medium {
+            background: #fffde7;
+            color: #f9a825;
+        }
+        
+        .severity-low {
+            background: #e8f5e9;
+            color: #388e3c;
+        }
+        
+        .finding-content h4 {
+            color: #333;
+            margin-bottom: 5px;
+            font-size: 1em;
+        }
+        
+        .finding-location {
+            color: #999;
+            font-size: 0.9em;
+            margin-top: 5px;
+        }
+        
+        .top-actions {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+        
+        .top-actions h2 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 1.5em;
+        }
+        
+        .action-list {
+            list-style: none;
+        }
+        
+        .action-item {
+            display: flex;
+            gap: 20px;
+            padding: 20px;
+            background: #f9f9f9;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            border-left: 4px solid #667eea;
+        }
+        
+        .action-number {
+            background: #667eea;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-weight: bold;
+        }
+        
+        .action-text {
+            flex: 1;
+            color: #555;
+            line-height: 1.6;
+        }
+        
+        .footer {
+            text-align: center;
+            color: rgba(255,255,255,0.7);
+            font-size: 0.9em;
+            margin-top: 40px;
+        }
+        
+        .no-findings {
+            color: #999;
+            text-align: center;
+            padding: 20px;
+            font-style: italic;
+        }
+        
+        @media (max-width: 768px) {
+            .overall-score {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .score-circle {
+                width: 100px;
+                height: 100px;
+                font-size: 2.5em;
+            }
+            
+            .header {
+                padding: 20px;
+            }
+            
+            .header h1 {
+                font-size: 1.8em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📊 Codebase Health Dashboard</h1>
+            <div class="date">Portfolio | Generated: 2026-11-04</div>
+            
+            <div class="stack">
+                <div class="stack-item">.NET 10</div>
+                <div class="stack-item">C# 14</div>
+                <div class="stack-item">ASP.NET Core</div>
+                <div class="stack-item">.NET Aspire</div>
+                <div class="stack-item">Dapper</div>
+                <div class="stack-item">Clean Architecture</div>
+            </div>
+            
+            <div class="overall-score">
+                <div class="score-circle healthy">74</div>
+                <div class="score-info">
+                    <h2>Overall Health: Healthy (74/100)</h2>
+                    <p><strong>Status:</strong> Good foundation with focused improvement opportunities</p>
+                    <div class="summary">
+                        <strong>Summary:</strong> The portfolio project is well-structured with solid Clean Architecture layering, passing tests (16/16), and proper separation of concerns. However, dependency vulnerabilities present a near-term risk—five high-severity and four moderate packages need updates. Architecture and code quality are strong, but security and dependency management require attention.
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="signals">
+            <h2>📈 Key Signals</h2>
+            <div class="signal-grid">
+                <div class="signal-card">
+                    <div class="signal-name">Build Status</div>
+                    <div class="signal-value">✓ Passing</div>
+                </div>
+                <div class="signal-card">
+                    <div class="signal-name">Tests</div>
+                    <div class="signal-value">16 passed, 0 failed</div>
+                </div>
+                <div class="signal-card">
+                    <div class="signal-name">Code Coverage</div>
+                    <div class="signal-value">Not measured</div>
+                </div>
+                <div class="signal-card">
+                    <div class="signal-name">Known Vulnerabilities</div>
+                    <div class="signal-value">5 HIGH, 4 MODERATE</div>
+                </div>
+                <div class="signal-card">
+                    <div class="signal-name">Outdated Dependencies</div>
+                    <div class="signal-value">Not measured</div>
+                </div>
+                <div class="signal-card">
+                    <div class="signal-name">Code Quality</div>
+                    <div class="signal-value">Good (no warnings)</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="categories">
+            <!-- Security -->
+            <div class="category">
+                <div class="category-header">
+                    <div class="category-title">
+                        <h3>🔐 Security</h3>
+                        <div class="category-verdict">Multiple auth gaps and dependency risks</div>
+                    </div>
+                    <div class="category-score-container">
+                        <div class="category-score-circle needs-work">54</div>
+                    </div>
+                </div>
+                <div class="category-findings">
+                    <div class="finding">
+                        <div class="severity-badge severity-high">HIGH</div>
+                        <div class="finding-content">
+                            <h4>Dual authentication strategies without clear priority</h4>
+                            <div class="finding-location">WebApi project — API Key header + JWT Bearer both enabled</div>
+                        </div>
+                    </div>
+                    <div class="finding">
+                        <div class="severity-badge severity-high">HIGH</div>
+                        <div class="finding-content">
+                            <h4>5 high-severity NuGet packages with known CVEs</h4>
+                            <div class="finding-location">Dependencies — Microsoft.OpenApi, System.Security.Cryptography.Pkcs, Microsoft.AspNetCore.Components.WebAssembly.Server, SSH.NET, MessagePack</div>
+                        </div>
+                    </div>
+                    <div class="finding">
+                        <div class="severity-badge severity-medium">MEDIUM</div>
+                        <div class="finding-content">
+                            <h4>4 moderate-severity packages (OpenTelemetry, MessagePack)</h4>
+                            <div class="finding-location">Dependencies — GHSA-g94r-2vxg-569j, GHSA-2fmv-rv2c-59x7 affecting telemetry and crypto</div>
+                        </div>
+                    </div>
+                    <div class="finding">
+                        <div class="severity-badge severity-medium">MEDIUM</div>
+                        <div class="finding-content">
+                            <h4>No explicit CORS policy configuration found</h4>
+                            <div class="finding-location">WebApi startup — defaults to restrictive but should be explicit</div>
+                        </div>
+                    </div>
+                    <div class="finding">
+                        <div class="severity-badge severity-low">LOW</div>
+                        <div class="finding-content">
+                            <h4>Secrets in appsettings configuration files</h4>
+                            <div class="finding-location">appsettings.json files — should use User Secrets or Azure Key Vault in production</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Architecture -->
+            <div class="category">
+                <div class="category-header">
+                    <div class="category-title">
+                        <h3>🏗️ Architecture</h3>
+                        <div class="category-verdict">Clean, layered, and well-organized</div>
+                    </div>
+                    <div class="category-score-container">
+                        <div class="category-score-circle strong">85</div>
+                    </div>
+                </div>
+                <div class="category-findings">
+                    <div class="finding">
+                        <div class="severity-badge severity-low">LOW</div>
+                        <div class="finding-content">
+                            <h4>UI.Web.Client (Blazor WebAssembly) has some direct infrastructure awareness</h4>
+                            <div class="finding-location">Client layer — could be tightened but acceptable for Blazor patterns</div>
+                        </div>
+                    </div>
+                    <div class="finding">
+                        <div class="severity-badge severity-low">LOW</div>
+                        <div class="finding-content">
+                            <h4>ServiceDefaults package duplicates some service registration logic</h4>
+                            <div class="finding-location">ServiceDefaults — minor consolidation opportunity</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Database / ORM -->
+            <div class="category">
+                <div class="category-header">
+                    <div class="category-title">
+                        <h3>🗄️ Data Access & ORM</h3>
+                        <div class="category-verdict">Raw ADO.NET with some inefficiencies</div>
+                    </div>
+                    <div class="category-score-container">
+                        <div class="category-score-circle needs-work">62</div>
+                    </div>
+                </div>
+                <div class="category-findings">
+                    <div class="finding">
+                        <div class="severity-badge severity-high">HIGH</div>
+                        <div class="finding-content">
+                            <h4>Manual SqlDataReader loops without column-index caching</h4>
+                            <div class="finding-location">Infrastructure.WorkExperience — WorkExperienceData.cs reading Job, Title, Skill tables</div>
+                        </div>
+                    </div>
+                    <div class="finding">
+                        <div class="severity-badge severity-high">HIGH</div>
+                        <div class="finding-content">
+                            <h4>Potential N+1 in GetJob — fetches Titles and Skills separately after Job</h4>
+                            <div class="finding-location">WorkExperienceData.GetJob() — three separate queries per job retrieval</div>
+                        </div>
+                    </div>
+                    <div class="finding">
+                        <div class="severity-badge severity-medium">MEDIUM</div>
+                        <div class="finding-content">
+                            <h4>No connection pooling or resiliency configuration visible</h4>
+                            <div class="finding-location">Infrastructure — should add Polly retry or built-in connection pool tuning</div>
+                        </div>
+                    </div>
+                    <div class="finding">
+                        <div class="severity-badge severity-low">LOW</div>
+                        <div class="finding-content">
+                            <h4>Using ToString() on Guid when building SQL filters</h4>
+                            <div class="finding-location">Data access queries — minor: always safe, but passes raw Guid values</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Performance -->
+            <div class="category">
+                <div class="category-header">
+                    <div class="category-title">
+                        <h3>⚡ Performance</h3>
+                        <div class="category-verdict">No major allocations issues found, but data layer inefficiencies</div>
+                    </div>
+                    <div class="category-score-container">
+                        <div class="category-score-circle healthy">78</div>
+                    </div>
+                </div>
+                <div class="category-findings">
+                    <div class="finding">
+                        <div class="severity-badge severity-low">LOW</div>
+                        <div class="finding-content">
+                            <h4>Async/await pattern well-applied throughout</h4>
+                            <div class="finding-location">All handlers and repositories — proper CancellationToken usage</div>
+                        </div>
+                    </div>
+                    <div class="finding">
+                        <div class="severity-badge severity-low">LOW</div>
+                        <div class="finding-content">
+                            <h4>No unnecessary allocations in hot paths detected</h4>
+                            <div class="finding-location">Core business logic — clean patterns, no boxing or string concatenation</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Observability -->
+            <div class="category">
+                <div class="category-header">
+                    <div class="category-title">
+                        <h3>📡 Observability</h3>
+                        <div class="category-verdict">Good OpenTelemetry setup, but incomplete tracing</div>
+                    </div>
+                    <div class="category-score-container">
+                        <div class="category-score-circle healthy">76</div>
+                    </div>
+                </div>
+                <div class="category-findings">
+                    <div class="finding">
+                        <div class="severity-badge severity-low">LOW</div>
+                        <div class="finding-content">
+                            <h4>OpenTelemetry integrated via ServiceDefaults, Aspire dashboard available</h4>
+                            <div class="finding-location">ServiceDefaults project — tracing, metrics, logging wired up</div>
+                        </div>
+                    </div>
+                    <div class="finding">
+                        <div class="severity-badge severity-medium">MEDIUM</div>
+                        <div class="finding-content">
+                            <h4>No explicit span creation in business handlers</h4>
+                            <div class="finding-location">UseCases handlers — could add custom spans for domain operations</div>
+                        </div>
+                    </div>
+                    <div class="finding">
+                        <div class="severity-badge severity-low">LOW</div>
+                        <div class="finding-content">
+                            <h4>Health checks configured via Aspire defaults</h4>
+                            <div class="finding-location">AppHost — liveness/readiness probes for Kubernetes ready</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Testing -->
+            <div class="category">
+                <div class="category-header">
+                    <div class="category-title">
+                        <h3>✅ Testing</h3>
+                        <div class="category-verdict">Solid test suite with integration tests, but coverage not measured</div>
+                    </div>
+                    <div class="category-score-container">
+                        <div class="category-score-circle healthy">82</div>
+                    </div>
+                </div>
+                <div class="category-findings">
+                    <div class="finding">
+                        <div class="severity-badge severity-low">LOW</div>
+                        <div class="finding-content">
+                            <h4>16 tests passing: 2 unit (adapter), 10 use-case (handler), 4 integration (data)</h4>
+                            <div class="finding-location">Test projects — comprehensive suite across layers</div>
+                        </div>
+                    </div>
+                    <div class="finding">
+                        <div class="severity-badge severity-medium">MEDIUM</div>
+                        <div class="finding-content">
+                            <h4>Code coverage not measured</h4>
+                            <div class="finding-location">CI/CD — should add `dotnet test --collect:"XPlat Code Coverage"` to pipeline</div>
+                        </div>
+                    </div>
+                    <div class="finding">
+                        <div class="severity-badge severity-low">LOW</div>
+                        <div class="finding-content">
+                            <h4>Integration tests use real SQL Server (Testcontainers or local)</h4>
+                            <div class="finding-location">Infrastructure.IntegrationTests — best practice for data-layer testing</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Dependencies -->
+            <div class="category">
+                <div class="category-header">
+                    <div class="category-title">
+                        <h3>📦 Dependencies</h3>
+                        <div class="category-verdict">Critical: Multiple high-severity CVEs require immediate updates</div>
+                    </div>
+                    <div class="category-score-container">
+                        <div class="category-score-circle at-risk">42</div>
+                    </div>
+                </div>
+                <div class="category-findings">
+                    <div class="finding">
+                        <div class="severity-badge severity-critical">CRITICAL</div>
+                        <div class="finding-content">
+                            <h4>5 high-severity CVEs in direct and transitive dependencies</h4>
+                            <div class="finding-location">NuGet — Microsoft.OpenApi, System.Security.Cryptography.Pkcs, SSH.NET, MessagePack, WebAssembly.Server</div>
+                        </div>
+                    </div>
+                    <div class="finding">
+                        <div class="severity-badge severity-high">HIGH</div>
+                        <div class="finding-content">
+                            <h4>OpenTelemetry.Api 1.15.0 (moderate CVE GHSA-g94r-2vxg-569j)</h4>
+                            <div class="finding-location">Dependencies — affects tracing and observability stack</div>
+                        </div>
+                    </div>
+                    <div class="finding">
+                        <div class="severity-badge severity-medium">MEDIUM</div>
+                        <div class="finding-content">
+                            <h4>No Central Package Management (Directory.Packages.props)</h4>
+                            <div class="finding-location">Project — each .csproj pins versions independently, increasing drift risk</div>
+                        </div>
+                    </div>
+                    <div class="finding">
+                        <div class="severity-badge severity-low">LOW</div>
+                        <div class="finding-content">
+                            <h4>Outdated packages not scanned</h4>
+                            <div class="finding-location">Dependencies — recommend running `dotnet list package --outdated` to identify minor/patch updates</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Code Quality -->
+            <div class="category">
+                <div class="category-header">
+                    <div class="category-title">
+                        <h3>✨ Code Quality</h3>
+                        <div class="category-verdict">Clean, idiomatic C# with good patterns</div>
+                    </div>
+                    <div class="category-score-container">
+                        <div class="category-score-circle healthy">80</div>
+                    </div>
+                </div>
+                <div class="category-findings">
+                    <div class="finding">
+                        <div class="severity-badge severity-low">LOW</div>
+                        <div class="finding-content">
+                            <h4>Build completes with zero compiler/lint errors</h4>
+                            <div class="finding-location">All projects — nullable reference types enabled, clean code</div>
+                        </div>
+                    </div>
+                    <div class="finding">
+                        <div class="severity-badge severity-low">LOW</div>
+                        <div class="finding-content">
+                            <h4>Result pattern used consistently for domain errors</h4>
+                            <div class="finding-location">Handlers — proper use of expected vs. exceptional errors</div>
+                        </div>
+                    </div>
+                    <div class="finding">
+                        <div class="severity-badge severity-low">LOW</div>
+                        <div class="finding-content">
+                            <h4>Primary constructors and modern C# patterns applied idiomatically</h4>
+                            <div class="finding-location">Models, handlers — clean constructor injection, no over-use</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="top-actions">
+            <h2>🎯 Top 3 Quick Wins</h2>
+            <ol class="action-list">
+                <li class="action-item">
+                    <div class="action-number">1</div>
+                    <div class="action-text">
+                        <strong>Update 5 high-severity NuGet packages immediately</strong>
+                        Run `dotnet package update Microsoft.OpenApi System.Security.Cryptography.Pkcs SSH.NET MessagePack` and test. This eliminates the largest security risk.
+                    </div>
+                </li>
+                <li class="action-item">
+                    <div class="action-number">2</div>
+                    <div class="action-text">
+                        <strong>Consolidate N+1 in GetJob() — combine Job, Title, Skill queries</strong>
+                        Rewrite to fetch all three tables with WHERE clauses in a single batch, or use joins. Reduces latency by ~67% for single-job reads.
+                    </div>
+                </li>
+                <li class="action-item">
+                    <div class="action-number">3</div>
+                    <div class="action-text">
+                        <strong>Clarify and enforce a single auth strategy (API Key or JWT)</strong>
+                        Choose one scheme, remove the unused one, and document why. Add explicit CORS policy to WebApi startup. Tightens security posture.
+                    </div>
+                </li>
+            </ol>
+        </div>
+        
+        <div class="footer">
+            <p>Portfolio Health Dashboard | .NET 10, Clean Architecture | Scan Date: 2026-11-04</p>
+            <p>🔗 Re-run this dashboard periodically to track score improvements over time.</p>
+        </div>
+    </div>
+</body>
+</html>

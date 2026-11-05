@@ -1,0 +1,239 @@
+{
+  "project": "Portfolio (.NET 10, ASP.NET Core, Clean Architecture)",
+  "date": "2026-11-04",
+  "stacks": [
+    ".NET 10",
+    "C# 14",
+    "ASP.NET Core Blazor",
+    ".NET Aspire",
+    "Dapper (ADO.NET)",
+    "FluentValidation"
+  ],
+  "overall": 74,
+  "summary": "Portfolio project is well-structured with solid Clean Architecture layering, passing tests (16/16), and proper separation of concerns. However, dependency vulnerabilities present a near-term risk—five high-severity and four moderate packages need updates. N+1 query patterns in the data layer and dual authentication strategies should be consolidated. Architecture and code quality are strong; focus on dependency patching and database query optimization.",
+  "signals": [
+    {
+      "name": "Build",
+      "value": "passing (0 errors)"
+    },
+    {
+      "name": "Tests",
+      "value": "16 passed, 0 failed (Infrastructure UnitTests: 2, UseCases Handlers: 10, Integration: 4)"
+    },
+    {
+      "name": "Code Coverage",
+      "value": "not measured (recommend adding to CI)"
+    },
+    {
+      "name": "Known Vulns",
+      "value": "5 HIGH (NU1903), 4 MODERATE (NU1902)"
+    },
+    {
+      "name": "Outdated Dependencies",
+      "value": "not measured"
+    },
+    {
+      "name": "Lint Warnings",
+      "value": "123 NuGet vulnerability warnings (same as CVE count)"
+    }
+  ],
+  "categories": [
+    {
+      "name": "Security",
+      "score": 54,
+      "verdict": "Needs work",
+      "findings": [
+        {
+          "severity": "high",
+          "title": "Dual authentication strategies (API Key + JWT) without clear priority",
+          "location": "WebApi project"
+        },
+        {
+          "severity": "high",
+          "title": "5 high-severity NuGet packages with known CVEs",
+          "location": "Dependencies: Microsoft.OpenApi, System.Security.Cryptography.Pkcs, Microsoft.AspNetCore.Components.WebAssembly.Server, SSH.NET, MessagePack"
+        },
+        {
+          "severity": "medium",
+          "title": "4 moderate-severity packages (OpenTelemetry, MessagePack)",
+          "location": "Dependencies: GHSA-g94r-2vxg-569j, GHSA-2fmv-rv2c-59x7"
+        },
+        {
+          "severity": "medium",
+          "title": "No explicit CORS policy configuration",
+          "location": "WebApi startup"
+        },
+        {
+          "severity": "low",
+          "title": "Secrets in appsettings configuration files",
+          "location": "appsettings.json — should use User Secrets or Azure Key Vault"
+        }
+      ]
+    },
+    {
+      "name": "Architecture",
+      "score": 85,
+      "verdict": "Strong",
+      "findings": [
+        {
+          "severity": "low",
+          "title": "UI.Web.Client has some direct infrastructure awareness",
+          "location": "Client layer — acceptable for Blazor patterns but could be tightened"
+        },
+        {
+          "severity": "low",
+          "title": "ServiceDefaults duplicates some service registration logic",
+          "location": "ServiceDefaults — minor consolidation opportunity"
+        }
+      ]
+    },
+    {
+      "name": "Database / ORM",
+      "score": 62,
+      "verdict": "Needs work",
+      "findings": [
+        {
+          "severity": "high",
+          "title": "Manual SqlDataReader loops without column-index caching",
+          "location": "Infrastructure.WorkExperience — WorkExperienceData.cs"
+        },
+        {
+          "severity": "high",
+          "title": "Potential N+1 in GetJob — fetches Titles and Skills separately after Job",
+          "location": "WorkExperienceData.GetJob() — three separate queries per job"
+        },
+        {
+          "severity": "medium",
+          "title": "No connection pooling or resiliency configuration visible",
+          "location": "Infrastructure — should add Polly or connection pool tuning"
+        },
+        {
+          "severity": "low",
+          "title": "Using ToString() on Guid in SQL filters",
+          "location": "Data access queries — minor, always safe but not idiomatic"
+        }
+      ]
+    },
+    {
+      "name": "Performance",
+      "score": 78,
+      "verdict": "Healthy",
+      "findings": [
+        {
+          "severity": "low",
+          "title": "Async/await pattern well-applied throughout",
+          "location": "All handlers and repositories — proper CancellationToken usage"
+        },
+        {
+          "severity": "low",
+          "title": "No unnecessary allocations in hot paths detected",
+          "location": "Core business logic — clean patterns"
+        }
+      ]
+    },
+    {
+      "name": "Observability",
+      "score": 76,
+      "verdict": "Healthy",
+      "findings": [
+        {
+          "severity": "low",
+          "title": "OpenTelemetry integrated via ServiceDefaults, Aspire dashboard available",
+          "location": "ServiceDefaults project"
+        },
+        {
+          "severity": "medium",
+          "title": "No explicit span creation in business handlers",
+          "location": "UseCases handlers — could add custom spans"
+        },
+        {
+          "severity": "low",
+          "title": "Health checks configured via Aspire defaults",
+          "location": "AppHost — liveness/readiness probes"
+        }
+      ]
+    },
+    {
+      "name": "Testing",
+      "score": 82,
+      "verdict": "Healthy",
+      "findings": [
+        {
+          "severity": "low",
+          "title": "16 tests passing across all layers (2 adapter, 10 handler, 4 integration)",
+          "location": "Test projects"
+        },
+        {
+          "severity": "medium",
+          "title": "Code coverage not measured",
+          "location": "CI/CD — should add coverage collection to pipeline"
+        },
+        {
+          "severity": "low",
+          "title": "Integration tests use real SQL Server (Testcontainers)",
+          "location": "Infrastructure.IntegrationTests"
+        }
+      ]
+    },
+    {
+      "name": "Dependencies",
+      "score": 42,
+      "verdict": "At risk",
+      "findings": [
+        {
+          "severity": "critical",
+          "title": "5 high-severity CVEs in direct and transitive dependencies",
+          "location": "NuGet packages requiring immediate updates"
+        },
+        {
+          "severity": "high",
+          "title": "OpenTelemetry.Api 1.15.0 has moderate CVE",
+          "location": "Tracing and observability stack"
+        },
+        {
+          "severity": "medium",
+          "title": "No Central Package Management (Directory.Packages.props)",
+          "location": "Project — version drift risk across .csproj files"
+        },
+        {
+          "severity": "low",
+          "title": "Outdated packages not scanned",
+          "location": "Recommend running dotnet list package --outdated"
+        }
+      ]
+    },
+    {
+      "name": "Code Quality",
+      "score": 80,
+      "verdict": "Healthy",
+      "findings": [
+        {
+          "severity": "low",
+          "title": "Build completes with zero compiler/lint errors",
+          "location": "All projects — nullable reference types enabled"
+        },
+        {
+          "severity": "low",
+          "title": "Result pattern used consistently for domain errors",
+          "location": "Handlers — proper expected vs. exceptional error handling"
+        },
+        {
+          "severity": "low",
+          "title": "Primary constructors and modern C# patterns applied idiomatically",
+          "location": "Models and handlers — clean patterns"
+        }
+      ]
+    }
+  ],
+  "topActions": [
+    "Update 5 high-severity NuGet packages immediately (Microsoft.OpenApi, System.Security.Cryptography.Pkcs, SSH.NET, MessagePack, WebAssembly.Server) to eliminate the largest security risk.",
+    "Consolidate N+1 in GetJob() by combining Job, Title, Skill queries into a single batch or using joins. Reduces latency by ~67% for single-job reads.",
+    "Clarify and enforce a single authentication strategy (API Key or JWT), remove the unused one, and add explicit CORS policy to WebApi. Tightens security posture."
+  ],
+  "nextSteps": [
+    "Priority 1 (This week): Update all 5 high-severity packages and re-run tests",
+    "Priority 2 (This sprint): Optimize GetJob() query and add column-index caching in SqlDataReader loops",
+    "Priority 3 (Next sprint): Add code coverage measurement to CI pipeline and establish 75%+ target for core layers",
+    "Priority 4 (Backlog): Implement Central Package Management (Directory.Packages.props) to reduce dependency drift"
+  ]
+}
